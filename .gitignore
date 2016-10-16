@@ -1,0 +1,15 @@
+obj
+bin
+/RobotsAtWar.v11.suo
+/RobotsAtWar.suo
+/RobotsAtWar.sln.DotSettings.user
+/default.ps1
+packages
+/RobotsAtWar.tests/bin/Debug/Dapper.dll
+/RobotsAtWar.tests/bin/Debug/Dapper.pdb
+/RobotsAtWar.tests/bin/Debug/Dapper.xml
+/RobotsAtWar.tests/bin/Debug/EASendMail40.dll
+/RobotsAtWar.tests/bin/Debug/log4net.dll
+/RobotsAtWar.tests/bin/Debug/log4net.xml
+/RobotsAtWar.tests/bin/Debug/RobotsAtWar.Server.dll
+/RobotsAtWar.tests/bin/Debug/RobotsAtWar.Server.pdb
