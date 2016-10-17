@@ -2,6 +2,7 @@
 {
     public enum JoinRoomOutcome
     {
+        //TODO: Replace it with exceptions
         Success,
         NoSuchRoomExists,
         UserAlreadyInRoom

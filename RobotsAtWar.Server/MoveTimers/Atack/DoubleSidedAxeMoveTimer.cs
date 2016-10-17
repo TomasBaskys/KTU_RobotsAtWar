@@ -8,17 +8,17 @@ namespace RobotsAtWar.Server.MoveTimers.Atack
         private const int MoveTimeInMiliseconds = 200;
         private const int StunTimeInMiliseconds = 120;
 
-        void IAttackTimer.Sleep(Strength strength)
+        void IAttackTimer.Sleep(ActionStrength actionStrength)
         {
-            for (var i = 0; i < ((int)strength) + 1; i++)
+            for (var i = 0; i < ((int)actionStrength) + 1; i++)
             {
                 Thread.Sleep(MoveTimeInMiliseconds);
             }
         }
 
-        void IAttackTimer.Stun(Strength strength)
+        void IAttackTimer.Stun(ActionStrength actionStrength)
         {
-            for (var i = 0; i < ((int)strength) + 1; i++)
+            for (var i = 0; i < ((int)actionStrength) + 1; i++)
             {
                 Thread.Sleep(StunTimeInMiliseconds);
             }

@@ -1,4 +1,4 @@
-﻿using RobotsAtWar.Server.Enums;
+﻿/*using RobotsAtWar.Server.Enums;
 using RobotsAtWar.Server.MoveTimers.Rest;
 using RobotsAtWar.Server.Potions;
 
@@ -15,12 +15,12 @@ namespace RobotsAtWar.Server.Skills
             _potion = potion;
         }
 
-        public RestOutcome Rest(int moveLength, WarriorState warriorState)
+        public RestResult Rest(int moveLength, RobotStatus robotStatus)
         {
             if (moveLength > 5 || moveLength < 1)
-                return RestOutcome.WrongData;
+                return RestResult.WrongData;
             _restTimer.Sleep(moveLength);
-            return warriorState.State != States.Interrupted ? RestOutcome.Success : RestOutcome.Interrupted;
+            return robotStatus.RobotState != RobotState.Interrupted ? RestResult.Success : RestResult.Interrupted;
         }
     }
-}
+}*/

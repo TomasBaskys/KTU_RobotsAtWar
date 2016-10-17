@@ -4,6 +4,6 @@ namespace RobotsAtWar.Server.Skills
 {
     public interface IAttackSkill
     {
-        AttackOutcome Attack(Strength strength, WarriorState warriorState, Warrior enemy);
+        //AttackResult Attack(ActionStrength actionStrength, Robot enemy);
     }
 }

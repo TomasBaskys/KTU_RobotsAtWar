@@ -24,7 +24,7 @@ namespace RobotsAtWar.Server
             message.From = new MailAddress("robotconfirmator@gmail.com", "RobotsAtWar");
             message.Subject = "RobotsAtWar game!";
             message.Body = "You have registered for RobotsAtWar game!\n\n" +
-                           "Your Guid is " + newUserGuid + "\n\n" +
+                           "Your RobotId is " + newUserGuid + "\n\n" +
                            "To complete registration, please follow this link: " +
                            ConfigSettings.ReadSetting("ServerUrl") + "registerusertosystem/" + newUserGuid;
             message.Priority = MailPriority.High;

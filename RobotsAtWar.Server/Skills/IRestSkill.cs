@@ -4,6 +4,6 @@ namespace RobotsAtWar.Server.Skills
 {
     public interface IRestSkill
     {
-        RestOutcome Rest(int moveLength, WarriorState warriorState);
+        //RestResult Rest(ActionStrength restStrength);
     }
 }

@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿/*using log4net;
 using RobotsAtWar.Server.Enums;
 using RobotsAtWar.Server.MoveTimers.Atack;
 using RobotsAtWar.Server.Weapons;
@@ -16,25 +16,25 @@ namespace RobotsAtWar.Server.Skills
             _weapon = weapon;
         }
 
-        public AttackOutcome Attack(Strength strength,WarriorState warriorState, Warrior enemy)
+        public AttackResult Attack(Strength strength,WarriorState warriorState, Warrior enemy)
         {
             int damage = _weapon.CalculateAttackDamage(strength);
             if (damage == 0)
             {
-                return AttackOutcome.WrongData;
+                return AttackResult.WrongData;
             }
 
             _weaponTimer.Sleep(strength);
 
             if (warriorState.State == States.Interrupted)
             {
-                return AttackOutcome.Interrupted;
+                return AttackResult.Interrupted;
             }
             
 
             var attackResponse = enemy.GetAttacked(damage);
 
-            if (attackResponse == AttackOutcome.Reflected)
+            if (attackResponse == AttackResult.Reflected)
             {
                 warriorState.State = States.Stunned;
                 _weaponTimer.Stun(strength);
@@ -45,4 +45,4 @@ namespace RobotsAtWar.Server.Skills
         }
 
     }
-}
+}*/

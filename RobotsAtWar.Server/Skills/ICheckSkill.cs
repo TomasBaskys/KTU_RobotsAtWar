@@ -2,6 +2,6 @@
 {
     public interface ICheckSkill
     {
-        WarriorState Check(Warrior enemy);
+        RobotStatus Check(Robot enemy);
     }
 }

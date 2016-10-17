@@ -48,7 +48,7 @@ namespace RobotsAtWar.Server
             return false;
         }
 
-        //return users with specified Guid freeText from database;
+        //return users with specified RobotId freeText from database;
         public static string GetUserFreeText(Guid userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))

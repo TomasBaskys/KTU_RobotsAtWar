@@ -13,3 +13,4 @@ packages
 /RobotsAtWar.tests/bin/Debug/log4net.xml
 /RobotsAtWar.tests/bin/Debug/RobotsAtWar.Server.dll
 /RobotsAtWar.tests/bin/Debug/RobotsAtWar.Server.pdb
+.vs

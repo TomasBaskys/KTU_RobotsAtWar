@@ -2,27 +2,27 @@
 
 namespace RobotsAtWar.Server
 {
-    public class WarriorState
+    public class RobotStatus
     {
         private readonly object _lockState = new object();
         private readonly object _lockState2 = new object();
-        private States _state;
+        private RobotState _robotState;
         private int _life;
 
-        public States State
+        public RobotState RobotState
         {
             get
             {
                 lock (_lockState)
                 {
-                    return _state;
+                    return _robotState;
                 }
             }
             set
             {
                 lock (_lockState)
                 {
-                    _state = value;
+                    _robotState = value;
                 }
             }
         }
@@ -46,9 +46,9 @@ namespace RobotsAtWar.Server
             }
         }
 
-        public WarriorState()
+        public RobotStatus()
         {
-            State = States.DoingNothing;
+            RobotState = RobotState.Idle;
             Life = 100;
         }
 

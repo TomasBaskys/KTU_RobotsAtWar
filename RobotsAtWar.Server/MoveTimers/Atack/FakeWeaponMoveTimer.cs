@@ -4,7 +4,7 @@ namespace RobotsAtWar.Server.MoveTimers.Atack
 {
     public class FakeWeaponMoveTimer : IAttackTimer
     {
-        public void Sleep(Strength strength){}
-        public void Stun(Strength strength){}
+        public void Sleep(ActionStrength actionStrength){}
+        public void Stun(ActionStrength actionStrength){}
     }
 }

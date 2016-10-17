@@ -1,6 +1,6 @@
 ﻿namespace RobotsAtWar.Server.Enums
 {
-    public enum States 
+    public enum RobotState 
     { 
         Attacking,
         Resting, 
@@ -8,7 +8,7 @@
         Defending,
         Interrupted,
         Stunned,
-        DoingNothing,
+        Idle,
         Winner,
         Dead
     }

@@ -1,10 +1,10 @@
-﻿namespace RobotsAtWar.Server.Skills
+﻿/*namespace RobotsAtWar.Server.Skills
 {
     public class CheckSkill : ICheckSkill
     {
-        public WarriorState Check(Warrior enemy)
+        public RobotStatus Check(Robot enemy)
         {
-            return enemy.WarriorState;
+            return enemy.State;
         }
     }
-}
+}*/

@@ -8,9 +8,9 @@ namespace RobotsAtWar.Server
         private const int KFactor = 30;
         private const int FFactor = 30;
 
-        private static int CalculateNewRating(int warriorRating, int enemyRating, States outcome)
+        private static int CalculateNewRating(int warriorRating, int enemyRating, RobotState outcome)
         {
-            if (outcome == States.Winner)
+            if (outcome == RobotState.Winner)
             {
                 return (int)(KFactor - KFactor * (1 / Math.Pow(10, (enemyRating - warriorRating) / FFactor + 1)));
             }
@@ -22,8 +22,8 @@ namespace RobotsAtWar.Server
             var warrior = Database.GetRank(winnerGuid);
             var enemy = Database.GetRank(loserGuid);
 
-            warrior += CalculateNewRating(warrior, enemy, States.Winner);
-            enemy += CalculateNewRating(enemy, warrior, States.Dead);
+            warrior += CalculateNewRating(warrior, enemy, RobotState.Winner);
+            enemy += CalculateNewRating(enemy, warrior, RobotState.Dead);
 
             Database.SetRank(winnerGuid, warrior);
             Database.SetRank(loserGuid, enemy);

@@ -52,13 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleFields.cs" />
     <Compile Include="BattleField.cs" />
-    <Compile Include="BattleFieldSingleton.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="Enums\AttackOutcome.cs" />
-    <Compile Include="Enums\DefenceOutcome.cs" />
     <Compile Include="Enums\JoinRoomOutcome.cs" />
-    <Compile Include="Enums\RestOutcome.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MoveTimers\Atack\AxeMoveTimer.cs" />
@@ -71,13 +68,11 @@
     <Compile Include="MoveTimers\Defend\DefenceTimer.cs" />
     <Compile Include="MoveTimers\Rest\IRestTimer.cs" />
     <Compile Include="MoveTimers\Rest\RestTimer.cs" />
-    <Compile Include="Potions\IPotion.cs" />
-    <Compile Include="Potions\Potion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingManager.cs" />
     <Compile Include="RegistrationToSystem.cs" />
-    <Compile Include="Enums\States.cs" />
-    <Compile Include="Enums\Strength.cs" />
+    <Compile Include="Enums\RobotState.cs" />
+    <Compile Include="Enums\ActionStrength.cs" />
     <Compile Include="Shields\BaseShield.cs" />
     <Compile Include="Shields\HeavyShield.cs" />
     <Compile Include="Shields\IShield.cs" />
@@ -92,15 +87,18 @@
     <Compile Include="Skills\IRestSkill.cs" />
     <Compile Include="Skills\RestSkill.cs" />
     <Compile Include="Tools\ConfigSettings.cs" />
-    <Compile Include="Warrior.cs" />
-    <Compile Include="WarriorState.cs" />
+    <Compile Include="RobotActions.cs" />
+    <Compile Include="Robot.cs" />
+    <Compile Include="RobotStatus.cs" />
     <Compile Include="Weapons\Axe.cs" />
     <Compile Include="Weapons\BareHands.cs" />
     <Compile Include="Weapons\DoubleSidedAxe.cs" />
     <Compile Include="Weapons\IWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

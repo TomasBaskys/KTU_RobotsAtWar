@@ -4,6 +4,6 @@ namespace RobotsAtWar.Server.Weapons
 {
     public interface IWeapon
     {
-        int CalculateAttackDamage(Strength strength);
+        int CalculateAttackDamage(ActionStrength actionStrength);
     }
 }

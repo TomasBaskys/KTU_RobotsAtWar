@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Globalization;
 using log4net.Repository.Hierarchy;
 using RobotsAtWar.Server.Enums;
@@ -18,39 +18,39 @@ namespace RobotsAtWar.Server.Skills
             _shield = shield;
         }
 
-        public DefenceOutcome Defend(int timeToDefend, WarriorState warriorState)
+        public DefenceState Defend(int timeToDefend, RobotStatus robotStatus)
         {
             if (timeToDefend < 1)
             {
-                return DefenceOutcome.WrongData;
+                return DefenceState.WrongData;
             }
             _defeceTimer.Sleep(timeToDefend);
 
-            warriorState.State = States.DoingNothing;
+            robotStatus.RobotState = RobotState.Idle;
 
-            return DefenceOutcome.Success;
+            return DefenceState.Success;
         }
 
-        public AttackOutcome GetAttacked(int damage, WarriorState warriorState, Warrior enemy)
+        public AttackResult GetAttacked(int damage, RobotStatus robotStatus, Robot enemy)
         {
             var randomNumberGenerator = new Random();
 
             var finalDamage = damage;
-            if (warriorState.State == States.Defending)
+            if (robotStatus.RobotState == RobotState.Defending)
             {
                 if (randomNumberGenerator.Next(_shield.MinDiceRoll, _shield.MaxDiceRoll) <= _shield.DiceRollBaseline)
                 {
                     enemy.GetAttacked(damage);
-                    return AttackOutcome.Reflected;
+                    return AttackResult.Reflected;
                 }
                 finalDamage = _shield.MitigateDamage(damage);
-                warriorState.Life -= finalDamage;
-                return AttackOutcome.Defended;
+                robotStatus.Life -= finalDamage;
+                return AttackResult.Defended;
             }
-            warriorState.Life -= finalDamage;
+            robotStatus.Life -= finalDamage;
 
-            if (warriorState.Life <= 0) warriorState.State = States.Dead;
-            return AttackOutcome.Success;
+            if (robotStatus.Life <= 0) robotStatus.RobotState = RobotState.Dead;
+            return AttackResult.Success;
         }
     }
-}
+}*/

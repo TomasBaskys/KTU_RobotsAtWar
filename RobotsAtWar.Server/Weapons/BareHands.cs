@@ -4,15 +4,15 @@ namespace RobotsAtWar.Server.Weapons
 {
     public class BareHands : IWeapon
     {
-        public int CalculateAttackDamage(Strength strength)
+        public int CalculateAttackDamage(ActionStrength actionStrength)
         {
-            switch (strength)
+            switch (actionStrength)
             {
-                case Strength.Weak:
+                case ActionStrength.Weak:
                     return 1;
-                case Strength.Medium:
+                case ActionStrength.Medium:
                     return 2;
-                case Strength.Strong:
+                case ActionStrength.Strong:
                     return 3;
                 default:
                     return 0;

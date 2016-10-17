@@ -4,7 +4,8 @@ namespace RobotsAtWar.Server.Skills
 {
     public interface IDefenceSkill
     {
-        DefenceOutcome Defend(int timeToDefend, WarriorState warriorState);
-        AttackOutcome GetAttacked(int damage, WarriorState warriorState, Warrior enemy);
+        //DefenceState Defend(ActionStrength defenceStrength);
+
+        //AttackResult GetAttacked(ActionStrength attackStrength, RobotState state);
     }
 }
