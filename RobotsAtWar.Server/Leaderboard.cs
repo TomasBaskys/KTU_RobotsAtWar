@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
-using Dapper;
+//using Dapper;
 
 namespace RobotsAtWar.Server
 {
@@ -18,8 +18,8 @@ namespace RobotsAtWar.Server
                 connection.Open();
 
                 var warriorSql = String.Format("SELECT * FROM Users WHERE UserID='{0}'", userGuid);
-                var warrior = connection.Execute(warriorSql);
-                return warrior;
+                //var warrior = null;connection.Execute(warriorSql);
+                return 4;
             }
         }
     }
