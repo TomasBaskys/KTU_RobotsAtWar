@@ -20,13 +20,13 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public void JoinBattle(Guid battleFieldId, Guid robotId)
+        public void JoinBattle(Guid battleId, Guid robotId)
         {
-            BattleFields.JoinBattleField(battleFieldId, robotId);
+            BattleFields.JoinBattleField(battleId, robotId);
         }
 
         [HttpGet]
-        public IList<BattleField> GetBattleFields()
+        public IEnumerable<Battle> GetBattles()
         {
             return BattleFields.GetBattleFields();
         }

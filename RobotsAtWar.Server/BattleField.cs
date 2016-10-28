@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RobotsAtWar.Server.Readers;
 
 namespace RobotsAtWar.Server
 {
@@ -24,7 +25,10 @@ namespace RobotsAtWar.Server
 
         public void RegisterRobot(Guid robotId)
         {
-            Robots.Add(new Robot());
+            var reader = new RobotReader();
+            Robot robot = reader.GetRobotInfo(robotId);
+
+            Robots.Add(robot);
 
             if (Robots.Count == BattleFieldCapacity)
             {
@@ -34,7 +38,7 @@ namespace RobotsAtWar.Server
 
         public Robot GetRobot(Guid robotId)
         {
-            return Robots.FirstOrDefault(r => r.RobotId == robotId);
+            return Robots.FirstOrDefault(r => Guid.Parse(r.RobotId) == robotId);
         }
 
         public bool AreRobotsReady()
@@ -44,14 +48,14 @@ namespace RobotsAtWar.Server
 
         public bool IsBattleOver()
         {
-            return !(Robots[0].IsAlive && Robots[1].IsAlive);
+            return !(Robots[0].Status.Life > 0 && Robots[1].Status.Life > 0);
         }
 
         public Guid GetWinner(Guid myGuid)
         {
             Robot aliveRobot = GetAliveRobot();
 
-            return aliveRobot.RobotId;
+            return Guid.Parse(aliveRobot.RobotId);
         }
 
         private void SetRobotsEnemies()
@@ -62,7 +66,7 @@ namespace RobotsAtWar.Server
 
         private Robot GetAliveRobot()
         {
-            return Robots.FirstOrDefault(r => r.IsAlive);
+            return Robots.FirstOrDefault(r => r.Status.Life > 0);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RobotsAtWar.Server.Readers;
 
 namespace RobotsAtWar.Server
 {
@@ -23,9 +24,10 @@ namespace RobotsAtWar.Server
             battleField.RegisterRobot(robotId);
         }
 
-        public static IList<BattleField> GetBattleFields()
+        public static IEnumerable<Battle> GetBattleFields()
         {
-            return Rooms;
+            var battleReader = new BattleReader();
+            return battleReader.GetActiveBattles();
         }
 
         public static BattleField GetBattleField(Guid battleFieldId)

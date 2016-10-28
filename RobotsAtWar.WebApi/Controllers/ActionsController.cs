@@ -16,7 +16,9 @@ namespace RobotsAtWar.WebApi.Controllers
 
             if (battleField.IsBattleRunning)
             {
-                battleField.GetRobot(robotId).Attack(attackStrength);
+                Robot robot = battleField.GetRobot(robotId);
+
+                RobotActions.Attack(robot, attackStrength);
             }
         }
 
@@ -27,7 +29,9 @@ namespace RobotsAtWar.WebApi.Controllers
 
             if (battleField.IsBattleRunning)
             {
-                battleField.GetRobot(robotId).Defence(defenceStrength);
+                Robot robot = battleField.GetRobot(robotId);
+
+                RobotActions.Defence(robot, defenceStrength);
             }
         }
 
@@ -38,7 +42,9 @@ namespace RobotsAtWar.WebApi.Controllers
 
             if (battleField.IsBattleRunning)
             {
-                battleField.GetRobot(robotId).Rest(restStrength);
+                Robot robot = battleField.GetRobot(robotId);
+
+                RobotActions.Rest(robot, restStrength);
             }
         }
 
@@ -49,7 +55,9 @@ namespace RobotsAtWar.WebApi.Controllers
 
             if (battleField.IsBattleRunning)
             {
-                return battleField.GetRobot(robotId).Check();
+                Robot robot = battleField.GetRobot(robotId);
+
+                return RobotActions.Check(robot);
             }
 
             return null;

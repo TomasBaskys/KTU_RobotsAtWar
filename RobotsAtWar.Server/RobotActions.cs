@@ -1,58 +1,51 @@
-﻿/*using System.Threading;
+﻿using System.Threading;
 using RobotsAtWar.Server.Enums;
 
 namespace RobotsAtWar.Server
 {
-    public class RobotActions
+    public static class RobotActions
     {
-        private readonly Robot _robot;
-
-        protected RobotActions(Robot robot)
+        public static void Attack(Robot robot, ActionStrength attackStrength)
         {
-            _robot = robot;
-        }
-
-        public void Attack(ActionStrength attackStrength)
-        {
-            _robot.State = RobotState.Attacking;
+            robot.State = RobotState.Attacking;
 
             Thread.Sleep((int)attackStrength * 1000);
 
-            if (_robot.State == RobotState.Attacking)
+            if (robot.State == RobotState.Attacking)
             {
-                _robot.Enemy.TakeAttack(attackStrength);
-                _robot.State = RobotState.Idle;
+                TakeAttack(robot.Enemy, attackStrength);
+                robot.State = RobotState.Idle;
             }
         }
 
-        private void TakeAttack(ActionStrength attackStrength)
+        private static void TakeAttack(Robot enemy, ActionStrength attackStrength)
         {
-            if (_robot.State != RobotState.Defending)
+            if (enemy.State != RobotState.Defending)
             {
-                _robot.Status.Life -= CalculateInpact(attackStrength, 10);
+                enemy.Status.Life -= CalculateInpact(attackStrength, 10);
 
-                _robot.State = _robot.IsAlive ? RobotState.Interrupted : RobotState.Dead;
+                enemy.State = IsAlive(enemy) ? RobotState.Interrupted : RobotState.Dead;
             }
         }
 
-        public void Defence(ActionStrength defenceStrength)
+        public static void Defence(Robot robot, ActionStrength defenceStrength)
         {
-            _robot.State = RobotState.Defending;
+            robot.State = RobotState.Defending;
 
             Thread.Sleep((int)defenceStrength * 1000);
 
-            _robot.State = RobotState.Idle;
+            robot.State = RobotState.Idle;
         }
 
-        public int Rest(ActionStrength restStrength)
+        public static int Rest(Robot robot, ActionStrength restStrength)
         {
             int healthToRestore = 0;
 
-            _robot.State = RobotState.Resting;
+            robot.State = RobotState.Resting;
 
             Thread.Sleep((int)restStrength * 1000);
 
-            if (_robot.State == RobotState.Resting)
+            if (robot.State == RobotState.Resting)
             {
                 //Magic formula
                 healthToRestore = CalculateInpact(restStrength, 5);
@@ -61,19 +54,16 @@ namespace RobotsAtWar.Server
             return healthToRestore;
         }
 
-        public RobotStatus Check()
+        public static RobotStatus Check(Robot robot)
         {
-            return _robot.Enemy.Status;
+            return robot.Enemy.Status;
         }
 
-        public bool IsAlive()
-        {
-            return _robot.Status.Life > 0;
-        }
-
-        private int CalculateInpact(ActionStrength actionStrength, int number)
+        private static int CalculateInpact(ActionStrength actionStrength, int number)
         {
             return (number + ((int)actionStrength - 1) * 2) * (int)actionStrength;
         }
+
+        private static bool IsAlive(Robot robot) => robot.Status.Life > 0;
     }
-}*/
+}

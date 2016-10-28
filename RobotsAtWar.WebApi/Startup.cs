@@ -11,6 +11,7 @@ namespace RobotsAtWar.WebApi
         public Startup(Uri address)
         {
             var configuration = new HttpSelfHostConfiguration(address);
+            configuration.MessageHandlers.Add(new CustomHeaderHandler());
 
             RegisterRoutes(configuration);
 

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Robots At War</title>
+
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="js/battle-arenas.js"></script>
+</head>
+	<body onload="GetBattles()">
+
+	<div class="container">
+	
+		<div class="row">
+			<div class="logo col-md-12">
+				<p>Robots At War</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="menu col-md-12">
+					<div class="btn-group" role="group" aria-label="Menu buttons">
+						<a class="btn btn-secondary" href="index.html" role="button">Home</a>
+						<a class="btn btn-default" href="#" role="button">Battles</a>
+						<a class="btn btn-secondary" href="strategy-builder.html" role="button">Strategy</a>
+					</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="battle_arenas_table col-md-offset-1">
+				<div class="header col-md-11">
+					<h1>Battle Arenas</h1>
+				</div>
+				<div class="table-responsive col-md-8">
+					<table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Room</th>
+								<th colspan="3">Host</th>
+							</tr>
+							<tr>
+								<th>X</th>
+								<th>X</th>
+								<th>Name</th>
+								<th>Place</th>
+								<th>Played Games</th>
+							</tr>
+						</thead>
+						<tbody class ="arena_table_content" id="battles_table">
+							
+						</tbody>
+					</table>
+				</div>
+
+				<div class="host_button col-md-2">
+						<button type="button" class="btn btn-default btn-block">Host Battle</button>
+				</div>
+
+				<div class="join_n_refresh_buttons col-md-12">
+						<button type="button" class="btn btn-default">Join Battle</button>
+						<button type="button" class="btn btn-default" onclick="RefreshBattlesTable()">Refresh</button>
+						<a class="btn btn-default" href="battle.html" role="button">DEMO</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	</body>
+</html>

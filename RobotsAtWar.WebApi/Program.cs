@@ -1,5 +1,5 @@
 ﻿using System;
-//using Topshelf;
+using Topshelf;
 
 namespace RobotsAtWar.WebApi
 {
@@ -7,7 +7,7 @@ namespace RobotsAtWar.WebApi
     {
         static void Main()
         {
-            /*HostFactory.Run(x =>
+            HostFactory.Run(x =>
             {
                 x.Service<Startup>(s =>
                 {
@@ -20,9 +20,7 @@ namespace RobotsAtWar.WebApi
                 x.SetDescription("RobotsAtWar");
                 x.SetDisplayName("RobotsAtWar");
                 x.SetServiceName("RobotsAtWar");
-            });*/
-
-
+            });
         }
     }
 }

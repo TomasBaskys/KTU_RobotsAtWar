@@ -1,0 +1,148 @@
+body {
+    /*overflow-x:hidden;*/
+    background-color: #aaf !important;
+}
+
+.row .logo {
+	background-color: #88f;
+	text-align: center;
+	font-weight: bold;
+	font-size: 72px;
+}
+
+.row .logo p {
+	margin: 0;
+}
+
+.row .menu {
+	background-color: #ddd;
+	padding: 0;
+}
+
+.row .menu button {
+	width: 15em;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 15px 0;
+	border-radius: 0;
+}
+
+.row .menu a {
+	width: 15em;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 15px 0;
+	border-radius: 0;
+	color: #333;
+}
+
+.row .home .robot img {
+	width: 100%;
+}
+
+.row .home .robot_buttons button {
+	padding: 15px 0;
+	margin-bottom: 15px;
+}
+
+.row .battle_arenas_table .table {
+	background-color: #fff;
+}
+
+.row .battle_arenas_table .table thead th {
+	text-align: center;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #ccc !important;
+}
+
+.row .header {
+	padding-bottom: 20px;
+}
+
+.row .battle_arenas_table .host_button button {
+	margin-bottom: 20px;
+}
+
+.row .battle_arenas_table .join_n_refresh_buttons button {
+	width: 10em;
+}
+
+.row .strategy_builder .table {
+	background-color: #fff;
+}
+
+.row .strategy_builder .strategy_buttons {
+	text-align: center;
+	padding: 20px 0;
+}
+
+.row .strategy_builder .strategy_buttons button {
+	width: 7em;
+	margin-bottom: 4px;
+}
+
+.row .strategy_builder .strategy_buttons .easy {
+	background-color: #0f0;
+}
+
+.row .strategy_builder .strategy_buttons .medium {
+	background-color: #fa0;
+}
+
+.row .strategy_builder .strategy_buttons .hard {
+	background-color: #f00;
+}
+
+.row .strategy_builder .strategy_panel {
+	background-color: #99e;
+	padding: 0;
+	border-radius: 10px;
+}
+
+.row .strategy_builder .strategy_panel .panel_header {
+	background-color: #ddd;
+	border-radius: 10px 10px 0 0;
+}
+
+.row .strategy_builder .strategy_panel .panel_header h3 {
+	margin: 0;
+	padding: 15px 25px;
+}
+
+.row .battle img {
+	width: 100%;
+}
+
+.row .battle .my_robot .robot .action_progress_bar {
+	margin-top: 20px;
+}
+
+.row .battle .enemy_robot .robot img {
+	transform: scale(-1,1);
+}
+
+.login_panel {
+    position:absolute;
+    left:38%;
+    top:35%;
+    margin: 10px;
+    background-color:#77f;
+}
+
+.login_panel .panel_header h3 {
+	background-color:grey;
+	margin: 0;
+	padding: 10px;
+}
+
+.login_panel .input {
+	margin: 0;
+	padding: 40px 20px;
+}
+
+.login_panel .input .guid_input {
+	width: 300px;
+}
+
