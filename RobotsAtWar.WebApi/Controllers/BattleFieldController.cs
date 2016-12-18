@@ -10,9 +10,9 @@ namespace RobotsAtWar.WebApi.Controllers
     public class BattleFieldController : ApiController
     {
         [HttpGet]
-        public Guid HostBattle(Guid robotId)
+        public string HostBattle(string robotId)
         {
-            Guid battleFieldId = BattleFields.CreateBattleField(robotId);
+            string battleFieldId = BattleFields.CreateBattleField(robotId);
 
             BattleFields.JoinBattleField(battleFieldId, robotId);
 
@@ -20,7 +20,7 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public void JoinBattle(Guid battleId, Guid robotId)
+        public void JoinBattle(string battleId, string robotId)
         {
             BattleFields.JoinBattleField(battleId, robotId);
         }

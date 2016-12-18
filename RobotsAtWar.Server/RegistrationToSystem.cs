@@ -9,7 +9,7 @@ namespace RobotsAtWar.Server
     {
         public static void AddUser(string email, string freeText)
         {
-            Guid newUserGuid = Guid.NewGuid();
+            string newUserGuid = Guid.NewGuid().ToString();
             string userGuid = newUserGuid.ToString();
             Database.AddUser(email, freeText, userGuid);
             SendConfirmationLetter(email, userGuid);
@@ -49,7 +49,7 @@ namespace RobotsAtWar.Server
             }
         }
 
-        public static string AddUserAsConfirmed(Guid userGuid)
+        public static string AddUserAsConfirmed(string userGuid)
         {
             try
             {

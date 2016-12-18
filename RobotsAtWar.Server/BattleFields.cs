@@ -9,15 +9,15 @@ namespace RobotsAtWar.Server
     {
         private static readonly IList<BattleField> Rooms = new List<BattleField>();
 
-        public static Guid CreateBattleField(Guid hostId)
+        public static string CreateBattleField(string hostId)
         {
-            Guid battleFieldId;
+            string battleFieldId;
             Rooms.Add(new BattleField(hostId, out battleFieldId));
 
             return battleFieldId;
         }
 
-        public static void JoinBattleField(Guid battleFieldId, Guid robotId)
+        public static void JoinBattleField(string battleFieldId, string robotId)
         {
             BattleField battleField = GetBattleField(battleFieldId);
 
@@ -30,7 +30,7 @@ namespace RobotsAtWar.Server
             return battleReader.GetActiveBattles();
         }
 
-        public static BattleField GetBattleField(Guid battleFieldId)
+        public static BattleField GetBattleField(string battleFieldId)
         {
             BattleField battleField = Rooms.FirstOrDefault(r => r.RoomId == battleFieldId);
 

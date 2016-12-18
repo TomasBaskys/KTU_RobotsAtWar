@@ -5,10 +5,13 @@
 	<title>Robots At War</title>
 
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 
-	</head>
-	<body>
+    <script src="js/battle.js"></script>
+</head>
+	<body onload="onPageLoad()">
 
 	<div class="container">
 	
@@ -35,12 +38,18 @@
 				</div>
 
 				<div class="my_robot">
-					<div class="action_buttons col-md-2">
-						<button type="button" class="btn btn-default btn-lg btn-block">Attack</button>
-						<button type="button" class="btn btn-default btn-lg btn-block">Defence</button>
-						<button type="button" class="btn btn-default btn-lg btn-block">Rest</button>
-						<button type="button" class="btn btn-default btn-lg btn-block">Check</button>
-					</div>
+				    <div class="action_buttons col-md-2">
+				        <!--<div class="attack_button">
+				            <img class="attack_item" src="images/sword_red.png" />
+				            <img class="attack_item" src="images/sword_green.png" />
+				            <img class="attack_item" src="images/sword_blue.png" />
+				            <button type="button" class="attack_item btn btn-default btn-lg btn-block">Attack</button>
+				        </div>-->
+                        <button type="button" class="attack btn btn-default btn-lg btn-block">Attack</button>
+				        <button type="button" class="defence btn btn-default btn-lg btn-block">Defence</button>
+				        <button type="button" class="rest btn btn-default btn-lg btn-block">Rest</button>
+				        <button type="button" class="check btn btn-default btn-lg btn-block">Check</button>
+				    </div>
 
 					<div class="robot col-md-4">
 						<div class="robot_healt_bar">
@@ -55,10 +64,9 @@
 							<img src="images/yellow_robot.jpg" alt="Robot">
 						</div>
 
-						<div class="action_progress_bar">
+					    <div class="action_progress_bar">
 							<div class="progress">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-									<span class="sr-only">40% Complete (success)</span>
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
 								</div>
 							</div>
 						</div>
@@ -66,7 +74,7 @@
 				</div>
 
 				<div class="enemy_robot col-md-offset-1 col-md-4">
-					<div class="action_progress_bar">
+					<div class="enemy_healt_bar">
 						<div class="progress">
 						  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
 						    ???%
@@ -75,7 +83,8 @@
 					</div>
 
 					<div class="robot">
-						<img src="images/yellow_robot.jpg" alt="Robot">
+					    <img src="images/yellow_robot.jpg" alt="Robot">
+                        <p class="action_result">-3</p>
 					</div>
 				</div>
 			</div>

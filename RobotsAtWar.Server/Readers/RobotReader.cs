@@ -9,7 +9,7 @@ namespace RobotsAtWar.Server.Readers
 {
     public class RobotReader
     {
-        public Robot GetRobotInfo(Guid robotId)
+        public Robot GetRobotInfo(string robotId)
         {
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["RobotsAtWarDB"].ConnectionString))
             {

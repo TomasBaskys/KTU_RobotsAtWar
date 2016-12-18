@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Http;
+﻿using System.Web.Http;
 using RobotsAtWar.Server;
 using RobotsAtWar.Server.Enums;
 
@@ -10,20 +9,27 @@ namespace RobotsAtWar.WebApi.Controllers
     public class ActionsController : ApiController
     {
         [HttpGet]
-        public void Attack(Guid battleFieldId, Guid robotId, ActionStrength attackStrength)
+        public int Attack(string battleFieldId, string robotId, ActionStrength attackStrength)
         {
+            int damage;
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
             if (battleField.IsBattleRunning)
             {
                 Robot robot = battleField.GetRobot(robotId);
 
-                RobotActions.Attack(robot, attackStrength);
+                damage = RobotActions.Attack(robot, attackStrength);
             }
+            else
+            {
+                damage = -99;
+            }
+
+            return damage;
         }
 
         [HttpGet]
-        public void Defence(Guid battleFieldId, Guid robotId, ActionStrength defenceStrength)
+        public void Defence(string battleFieldId, string robotId, ActionStrength defenceStrength)
         {
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
@@ -36,7 +42,7 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public void Rest(Guid battleFieldId, Guid robotId, ActionStrength restStrength)
+        public void Rest(string battleFieldId, string robotId, ActionStrength restStrength)
         {
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
@@ -49,7 +55,7 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public RobotStatus Check(Guid battleFieldId, Guid robotId)
+        public RobotStatus Check(string battleFieldId, string robotId)
         {
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 

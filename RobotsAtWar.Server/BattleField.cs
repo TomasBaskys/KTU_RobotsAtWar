@@ -9,21 +9,21 @@ namespace RobotsAtWar.Server
     {
         private readonly int BattleFieldCapacity = 2;
 
-        private readonly Guid _hostId;
+        private readonly string _hostId;
         public List<Robot> Robots { get; }
 
-        public Guid RoomId;
+        public readonly string RoomId;
         public bool IsBattleRunning { get; set; }
 
-        public BattleField(Guid hostId, out Guid battleFieldId)
+        public BattleField(string hostId, out string battleFieldId)
         {
             _hostId = hostId;
             Robots = new List<Robot>(BattleFieldCapacity);
 
-            RoomId = battleFieldId = Guid.NewGuid();
+            RoomId = battleFieldId = Guid.NewGuid().ToString();
         }
 
-        public void RegisterRobot(Guid robotId)
+        public void RegisterRobot(string robotId)
         {
             var reader = new RobotReader();
             Robot robot = reader.GetRobotInfo(robotId);
@@ -36,9 +36,9 @@ namespace RobotsAtWar.Server
             }
         }
 
-        public Robot GetRobot(Guid robotId)
+        public Robot GetRobot(string robotId)
         {
-            return Robots.FirstOrDefault(r => Guid.Parse(r.RobotId) == robotId);
+            return Robots.FirstOrDefault(r => r.RobotId == robotId);
         }
 
         public bool AreRobotsReady()
@@ -51,11 +51,11 @@ namespace RobotsAtWar.Server
             return !(Robots[0].Status.Life > 0 && Robots[1].Status.Life > 0);
         }
 
-        public Guid GetWinner(Guid myGuid)
+        public string GetWinner(string myGuid)
         {
             Robot aliveRobot = GetAliveRobot();
 
-            return Guid.Parse(aliveRobot.RobotId);
+            return aliveRobot.RobotId;
         }
 
         private void SetRobotsEnemies()

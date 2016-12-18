@@ -10,7 +10,7 @@ namespace RobotsAtWar.WebApi.Controllers
     public class AuthController : ApiController
     {
         [HttpGet]
-        public bool Login(Guid robotId)
+        public bool Login(string robotId)
         {
             var reader = new RobotReader();
             Robot robot = reader.GetRobotInfo(robotId);

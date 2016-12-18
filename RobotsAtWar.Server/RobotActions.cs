@@ -5,27 +5,40 @@ namespace RobotsAtWar.Server
 {
     public static class RobotActions
     {
-        public static void Attack(Robot robot, ActionStrength attackStrength)
+        public static int Attack(Robot robot, ActionStrength attackStrength)
         {
+            int damage;
+
             robot.State = RobotState.Attacking;
 
             Thread.Sleep((int)attackStrength * 1000);
 
             if (robot.State == RobotState.Attacking)
             {
-                TakeAttack(robot.Enemy, attackStrength);
+                damage = TakeAttack(robot.Enemy, attackStrength);
                 robot.State = RobotState.Idle;
             }
+            else
+            {
+                damage = -1;
+            }
+
+            return damage;
         }
 
-        private static void TakeAttack(Robot enemy, ActionStrength attackStrength)
+        private static int TakeAttack(Robot enemy, ActionStrength attackStrength)
         {
+            var damage = 0;
+
             if (enemy.State != RobotState.Defending)
             {
-                enemy.Status.Life -= CalculateInpact(attackStrength, 10);
-
+                damage = CalculateInpact(attackStrength, 10);
                 enemy.State = IsAlive(enemy) ? RobotState.Interrupted : RobotState.Dead;
             }
+
+            enemy.Status.Life -= damage;
+
+            return damage;
         }
 
         public static void Defence(Robot robot, ActionStrength defenceStrength)

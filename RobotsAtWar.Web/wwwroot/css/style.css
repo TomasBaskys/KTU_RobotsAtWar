@@ -146,3 +146,19 @@ body {
 	width: 300px;
 }
 
+.attack_button .attack_item {
+    display: inline-block
+}
+
+.action_progress_bar .progress_bar {
+    width: 10%;
+}
+
+.action_result {
+    position: absolute; 
+    top: 30px; 
+    left: -120px; 
+    font-size: 12em; 
+    color: red;
+    visibility: hidden;
+}

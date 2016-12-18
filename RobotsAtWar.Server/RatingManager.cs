@@ -17,7 +17,7 @@ namespace RobotsAtWar.Server
             return (int)(-KFactor * (1 / Math.Pow(10, (enemyRating - warriorRating) / FFactor + 1)));
         }
 
-        public static void UpdateWarriorRating(Guid winnerGuid, Guid loserGuid)
+        public static void UpdateWarriorRating(string winnerGuid, string loserGuid)
         {
             var warrior = Database.GetRank(winnerGuid);
             var enemy = Database.GetRank(loserGuid);

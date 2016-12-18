@@ -20,9 +20,9 @@ namespace RobotsAtWar.Server
         /// Check in database if user exists;
         /// </summary>
         /// <param name="userGuid">
-        /// GUID of the existing user.
+        /// string of the existing user.
         /// </param>
-        public static bool UserExists(Guid userGuid)
+        public static bool UserExists(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -49,7 +49,7 @@ namespace RobotsAtWar.Server
         }
 
         //return users with specified RobotId freeText from database;
-        public static string GetUserFreeText(Guid userGuid)
+        public static string GetUserFreeText(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -124,7 +124,7 @@ namespace RobotsAtWar.Server
             }
         }
 
-        public static void ConfirmUser(Guid userGuid)
+        public static void ConfirmUser(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -147,7 +147,7 @@ namespace RobotsAtWar.Server
         }
 
         //Add one to WinsInARow counter;
-        public static void AddWin(Guid userGuid)
+        public static void AddWin(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -177,7 +177,7 @@ namespace RobotsAtWar.Server
         }
 
         //Reset WinsInARow counter to zero;
-        public static void ResetWins(Guid userGuid)
+        public static void ResetWins(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -200,7 +200,7 @@ namespace RobotsAtWar.Server
         }
 
         //Change achievement[name] = true;
-        public static void SetAchievement(Guid userGuid, string name)
+        public static void SetAchievement(string userGuid, string name)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -223,7 +223,7 @@ namespace RobotsAtWar.Server
         }
 
         //return users winsInARow counter;
-        public static int GetWinsInARow(Guid userGuid)
+        public static int GetWinsInARow(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -253,7 +253,7 @@ namespace RobotsAtWar.Server
         }
 
         // returns user rank
-        public static int GetRank(Guid userGuid)
+        public static int GetRank(string userGuid)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -283,7 +283,7 @@ namespace RobotsAtWar.Server
         }
 
         // sets user rank
-        public static void SetRank(Guid userGuid, int rank)
+        public static void SetRank(string userGuid, int rank)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

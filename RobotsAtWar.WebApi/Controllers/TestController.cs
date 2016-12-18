@@ -8,7 +8,7 @@ namespace RobotsAtWar.WebApi.Controllers
     public class TestController : ApiController
     {
         [HttpGet]
-        public string[] Values(Guid value)
+        public string[] Values(string value)
         {
             return new[] {"value1", value.ToString()};
         }
