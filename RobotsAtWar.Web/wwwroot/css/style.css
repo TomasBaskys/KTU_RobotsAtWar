@@ -146,10 +146,6 @@ body {
 	width: 300px;
 }
 
-.attack_button .attack_item {
-    display: inline-block
-}
-
 .action_progress_bar .progress_bar {
     width: 10%;
 }
@@ -161,4 +157,17 @@ body {
     font-size: 12em; 
     color: red;
     visibility: hidden;
+}
+
+.actions {
+    display: none;
+}
+
+.attack_item, .defence_item, .rest_item {
+    height: 48px;
+    width: 48px;
+}
+
+.attack_item:hover, .defence_item:hover, .rest_item:hover {
+    background: #cccccc;
 }
