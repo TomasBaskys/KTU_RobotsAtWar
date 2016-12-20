@@ -1,7 +1,11 @@
+var actionInpactTextElement;
+
 function onPageLoad() {
     enableButtonPopovers(".action_buttons .attack", ".attack_buttons");
     enableButtonPopovers(".action_buttons .defence", ".defence_buttons");
     enableButtonPopovers(".action_buttons .rest", ".rest_buttons");
+
+    actionInpactTextElement = $(".action_impact_text")[0];
 }
 
 function enableButtonPopovers(popoverSelector, contentSelector) {
@@ -30,11 +34,13 @@ function attack(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    /* $.get('http://localhost:1235/api/actions/attack?battleFieldId=' + battleFieldId + '&robotId=' + robotId + '&attackStrength=' + attackStrength, function (damage) {
-         console.log(damage);
-         
-     });*/
-    return true;
+    $.get('http://localhost:1235/api/actions/attack?' +
+        'battleFieldId=' + battleFieldId +
+        '&robotId=' + robotId +
+        '&attackStrength=' + strength,
+        function (damage) {
+            setActionImpactText(damage, "red");
+        });
 }
 
 function defence(strength) {
@@ -45,11 +51,22 @@ function defence(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    /* $.get('http://localhost:1235/api/actions/attack?battleFieldId=' + battleFieldId + '&robotId=' + robotId + '&attackStrength=' + attackStrength, function (damage) {
-         console.log(damage);
-         
-     });*/
-    return true;
+    $.get('http://localhost:1235/api/actions/attack?' +
+        'battleFieldId=' + battleFieldId +
+        '&robotId=' + robotId +
+        '&attackStrength=' + strength,
+        function (damage) {
+            switch (damage) {
+                case -1:
+                    setActionImpactText("interupted", "red");
+                    break;
+                case -99:
+                    setActionImpactText("dead", "red");
+                    break;
+                default:
+                    setActionImpactText(damage, "red");
+            }
+        });
 }
 
 function rest(strength) {
@@ -77,9 +94,18 @@ function fillActionBar(length) {
 function clearActionBar(timeToWait) {
     var actionBar = $('.action_progress_bar .progress-bar');
 
-    setTimeout(function() {
+    setTimeout(function () {
         actionBar.css("transition", "unset ");
 
         actionBar.css("width", "0");
     }, timeToWait * 1000 + 100);
+}
+
+function setActionImpactText(impact, color) {
+    actionInpactTextElement.innerHTML = impact;
+    actionInpactTextElement.style.color = color;
+
+    setTimeout(function () {
+        actionInpactTextElement.innerHTML = "";
+    }, 500);
 }

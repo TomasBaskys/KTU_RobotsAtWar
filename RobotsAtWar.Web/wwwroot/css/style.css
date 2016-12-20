@@ -4,157 +4,157 @@ body {
 }
 
 .row .logo {
-	background-color: #88f;
-	text-align: center;
-	font-weight: bold;
-	font-size: 72px;
+    background-color: #88f;
+    text-align: center;
+    font-weight: bold;
+    font-size: 72px;
 }
 
-.row .logo p {
-	margin: 0;
-}
+    .row .logo p {
+        margin: 0;
+    }
 
 .row .menu {
-	background-color: #ddd;
-	padding: 0;
+    background-color: #ddd;
+    padding: 0;
 }
 
-.row .menu button {
-	width: 15em;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 15px 0;
-	border-radius: 0;
-}
+    .row .menu button {
+        width: 15em;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 15px 0;
+        border-radius: 0;
+    }
 
-.row .menu a {
-	width: 15em;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 15px 0;
-	border-radius: 0;
-	color: #333;
-}
+    .row .menu a {
+        width: 15em;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 15px 0;
+        border-radius: 0;
+        color: #333;
+    }
 
 .row .home .robot img {
-	width: 100%;
+    width: 100%;
 }
 
 .row .home .robot_buttons button {
-	padding: 15px 0;
-	margin-bottom: 15px;
+    padding: 15px 0;
+    margin-bottom: 15px;
 }
 
 .row .battle_arenas_table .table {
-	background-color: #fff;
+    background-color: #fff;
 }
 
-.row .battle_arenas_table .table thead th {
-	text-align: center;
-}
+    .row .battle_arenas_table .table thead th {
+        text-align: center;
+    }
 
 .table-hover > tbody > tr:hover {
-  background-color: #ccc !important;
+    background-color: #ccc !important;
 }
 
 .row .header {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .row .battle_arenas_table .host_button button {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .row .battle_arenas_table .join_n_refresh_buttons button {
-	width: 10em;
+    width: 10em;
 }
 
 .row .strategy_builder .table {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .row .strategy_builder .strategy_buttons {
-	text-align: center;
-	padding: 20px 0;
+    text-align: center;
+    padding: 20px 0;
 }
 
-.row .strategy_builder .strategy_buttons button {
-	width: 7em;
-	margin-bottom: 4px;
-}
+    .row .strategy_builder .strategy_buttons button {
+        width: 7em;
+        margin-bottom: 4px;
+    }
 
-.row .strategy_builder .strategy_buttons .easy {
-	background-color: #0f0;
-}
+    .row .strategy_builder .strategy_buttons .easy {
+        background-color: #0f0;
+    }
 
-.row .strategy_builder .strategy_buttons .medium {
-	background-color: #fa0;
-}
+    .row .strategy_builder .strategy_buttons .medium {
+        background-color: #fa0;
+    }
 
-.row .strategy_builder .strategy_buttons .hard {
-	background-color: #f00;
-}
+    .row .strategy_builder .strategy_buttons .hard {
+        background-color: #f00;
+    }
 
 .row .strategy_builder .strategy_panel {
-	background-color: #99e;
-	padding: 0;
-	border-radius: 10px;
+    background-color: #99e;
+    padding: 0;
+    border-radius: 10px;
 }
 
-.row .strategy_builder .strategy_panel .panel_header {
-	background-color: #ddd;
-	border-radius: 10px 10px 0 0;
-}
+    .row .strategy_builder .strategy_panel .panel_header {
+        background-color: #ddd;
+        border-radius: 10px 10px 0 0;
+    }
 
-.row .strategy_builder .strategy_panel .panel_header h3 {
-	margin: 0;
-	padding: 15px 25px;
-}
+        .row .strategy_builder .strategy_panel .panel_header h3 {
+            margin: 0;
+            padding: 15px 25px;
+        }
 
 .row .battle img {
-	width: 100%;
+    width: 100%;
 }
 
 .row .battle .my_robot .robot .action_progress_bar {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .row .battle .enemy_robot .robot img {
-	transform: scale(-1,1);
+    transform: scale(-1,1);
 }
 
 .login_panel {
-    position:absolute;
-    left:38%;
-    top:35%;
+    position: absolute;
+    left: 38%;
+    top: 35%;
     margin: 10px;
-    background-color:#77f;
+    background-color: #77f;
 }
 
-.login_panel .panel_header h3 {
-	background-color:grey;
-	margin: 0;
-	padding: 10px;
-}
+    .login_panel .panel_header h3 {
+        background-color: grey;
+        margin: 0;
+        padding: 10px;
+    }
 
-.login_panel .input {
-	margin: 0;
-	padding: 40px 20px;
-}
+    .login_panel .input {
+        margin: 0;
+        padding: 40px 20px;
+    }
 
-.login_panel .input .guid_input {
-	width: 300px;
-}
+        .login_panel .input .guid_input {
+            width: 300px;
+        }
 
 .action_progress_bar .progress_bar {
     width: 10%;
 }
 
 .action_result {
-    position: absolute; 
-    top: 30px; 
-    left: -120px; 
-    font-size: 12em; 
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    font-size: 12em;
     color: red;
     visibility: hidden;
 }
@@ -168,6 +168,15 @@ body {
     width: 48px;
 }
 
-.attack_item:hover, .defence_item:hover, .rest_item:hover {
-    background: #cccccc;
+    .attack_item:hover, .defence_item:hover, .rest_item:hover {
+        background: #cccccc;
+    }
+
+.action_impact_text {
+    position: absolute;
+    top: 111px;
+    font-size: 96px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
 }

@@ -30,6 +30,17 @@ namespace RobotsAtWar.WebApi.Controllers
         {
             return BattleFields.GetBattleFields();
         }
+
+        [HttpGet]
+        public string StartDemoBattle(string robotId)
+        {
+            string battleFieldId = BattleFields.CreateBattleField(robotId);
+
+            BattleFields.JoinBattleField(battleFieldId, robotId);
+            BattleFields.JoinBattleField(battleFieldId, "DEMO");
+
+            return battleFieldId;
+        }
     }
 }
 
