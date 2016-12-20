@@ -42,16 +42,20 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public void Rest(string battleFieldId, string robotId, ActionStrength restStrength)
+        public int Rest(string battleFieldId, string robotId, ActionStrength restStrength)
         {
+            var healPoints = 0;
+
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
             if (battleField.IsBattleRunning)
             {
                 Robot robot = battleField.GetRobot(robotId);
 
-                RobotActions.Rest(robot, restStrength);
+                healPoints = RobotActions.Rest(robot, restStrength);
             }
+
+            return healPoints;
         }
 
         [HttpGet]
