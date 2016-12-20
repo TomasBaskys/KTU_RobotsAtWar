@@ -38,10 +38,20 @@ function attack(strength) {
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
         '&attackStrength=' + strength,
-        function (damage) {
-            setActionImpactText(damage, "red");
+        function (response) {
+            switch (response) {
+                case -1:
+                    setActionImpactText("interupted", "red");
+                    break;
+                case -99:
+                    setActionImpactText("dead", "red");
+                    break;
+                default:
+                    setActionImpactText(response, "red");
+            }
         });
 }
+
 
 function defence(strength) {
 
@@ -51,21 +61,14 @@ function defence(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    $.get('http://localhost:1235/api/actions/attack?' +
+    setDefenceText("start");
+
+    $.get('http://localhost:1235/api/actions/defence?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
-        '&attackStrength=' + strength,
-        function (damage) {
-            switch (damage) {
-                case -1:
-                    setActionImpactText("interupted", "red");
-                    break;
-                case -99:
-                    setActionImpactText("dead", "red");
-                    break;
-                default:
-                    setActionImpactText(damage, "red");
-            }
+        '&defenceStrength=' + strength,
+        function () {
+            setDefenceText("finish");
         });
 }
 
@@ -77,11 +80,13 @@ function rest(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    /* $.get('http://localhost:1235/api/actions/attack?battleFieldId=' + battleFieldId + '&robotId=' + robotId + '&attackStrength=' + attackStrength, function (damage) {
-         console.log(damage);
-         
-     });*/
-    return true;
+    $.get('http://localhost:1235/api/actions/rest?' +
+        'battleFieldId=' + battleFieldId +
+        '&robotId=' + robotId +
+        '&restStrength=' + strength,
+        function (response) {
+            setActionImpactText(response, "green");
+        });
 }
 
 function fillActionBar(length) {
@@ -101,11 +106,28 @@ function clearActionBar(timeToWait) {
     }, timeToWait * 1000 + 100);
 }
 
-function setActionImpactText(impact, color) {
+function setActionImpactText(impact, color, timeToShow) {
+    timeToShow = typeof timeToShow !== 'undefined' ? timeToShow : 500;
+
     actionInpactTextElement.innerHTML = impact;
     actionInpactTextElement.style.color = color;
 
     setTimeout(function () {
         actionInpactTextElement.innerHTML = "";
-    }, 500);
+    }, timeToShow);
+}
+
+function setDefenceText(defenceState) {
+    actionInpactTextElement.style.color = "black";
+
+    switch (defenceState) {
+        case "start":
+            actionInpactTextElement.innerHTML = "Defending";
+            break;
+        case "finish":
+            actionInpactTextElement.innerHTML = "";
+            break;
+        default:
+            actionInpactTextElement.innerHTML = "";
+    }
 }
