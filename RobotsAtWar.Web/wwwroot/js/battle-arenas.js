@@ -1,15 +1,24 @@
 var SelectedBattleId;
 
+function onPageLoad() {
+
+    GetBattles();
+
+    $('#demoBattleButton').on('click', function () {
+        startDemoBattle();
+    });
+}
+
 function GetBattles() {
     $.get("http://localhost:1235/api/battlefield/getbattles",
-        function(battles) {
+        function (battles) {
             FillBattleTable(battles);
         });
 }
 
 function RefreshBattlesTable() {
     $.get("http://localhost:1235/api/battlefield/getbattles",
-        function(battles) {
+        function (battles) {
             var battleTable = document.getElementById("battles_table");
 
             while (battleTable.firstChild) {
@@ -17,6 +26,22 @@ function RefreshBattlesTable() {
             }
 
             FillBattleTable(battles);
+        });
+}
+
+function startDemoBattle() {
+    var robotId = sessionStorage.getItem("robotId");
+
+    $.get("http://localhost:1235/api/battlefield/startdemobattle?robotId=" + robotId,
+        function (battleId) {
+            sessionStorage.setItem("battleFieldId", battleId);
+        })
+        .done(function () {
+            window.location.href = "/RobotsAtWar/battle.html";
+
+        })
+        .fail(function () {
+            alert("An error occurred.");
         });
 }
 

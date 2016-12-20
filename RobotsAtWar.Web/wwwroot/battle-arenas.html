@@ -11,7 +11,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/battle-arenas.js"></script>
 </head>
-<body onload="GetBattles()">
+<body onload="onPageLoad()">
 
     <div class="container">
 
@@ -64,7 +64,7 @@
                 <div class="join_n_refresh_buttons col-md-12">
                     <button type="button" class="btn btn-default">Join Battle</button>
                     <button type="button" class="btn btn-default" onclick="RefreshBattlesTable()">Refresh</button>
-                    <a class="btn btn-default" href="battle.html" role="button">DEMO</a>
+                    <a id="demoBattleButton" class="btn btn-default" role="button">DEMO</a>
                 </div>
             </div>
 
