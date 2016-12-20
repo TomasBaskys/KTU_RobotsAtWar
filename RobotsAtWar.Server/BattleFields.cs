@@ -22,6 +22,11 @@ namespace RobotsAtWar.Server
             BattleField battleField = GetBattleField(battleFieldId);
 
             battleField.RegisterRobot(robotId);
+
+            if (battleField.AreRobotsReady())
+            {
+                battleField.StartBattle();
+            }
         }
 
         public static IEnumerable<Battle> GetBattleFields()

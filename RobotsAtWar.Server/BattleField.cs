@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RobotsAtWar.Server.Enums;
 using RobotsAtWar.Server.Readers;
 
 namespace RobotsAtWar.Server
@@ -27,6 +28,7 @@ namespace RobotsAtWar.Server
         {
             var reader = new RobotReader();
             Robot robot = reader.GetRobotInfo(robotId);
+            robot.Status = new RobotStatus();
 
             Robots.Add(robot);
 
@@ -34,6 +36,8 @@ namespace RobotsAtWar.Server
             {
                 SetRobotsEnemies();
             }
+
+            robot.Ready = true;
         }
 
         public Robot GetRobot(string robotId)
@@ -67,6 +71,11 @@ namespace RobotsAtWar.Server
         private Robot GetAliveRobot()
         {
             return Robots.FirstOrDefault(r => r.Status.Life > 0);
+        }
+
+        public void StartBattle()
+        {
+            IsBattleRunning = true;
         }
     }
 }
