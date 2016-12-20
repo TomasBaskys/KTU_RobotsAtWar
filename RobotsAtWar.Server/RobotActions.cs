@@ -15,30 +15,30 @@ namespace RobotsAtWar.Server
 
             if (robot.State == RobotState.Attacking)
             {
-                damage = TakeAttack(robot.Enemy, attackStrength);
+                damage = MakeDamage(robot.Enemy, attackStrength);
                 robot.State = RobotState.Idle;
             }
             else
             {
-                damage = -1;
+                damage = -1; //interupted
             }
 
             return damage;
         }
 
-        private static int TakeAttack(Robot enemy, ActionStrength attackStrength)
+        private static int MakeDamage(Robot enemy, ActionStrength attackStrength)
         {
             var damage = 0;
 
             if (enemy.State != RobotState.Defending)
             {
                 damage = CalculateInpact(attackStrength, 10);
+
+                enemy.Status.Life -= damage;
                 enemy.State = IsAlive(enemy) ? RobotState.Interrupted : RobotState.Dead;
             }
 
-            enemy.Status.Life -= damage;
-
-            return damage;
+            return enemy.State != RobotState.Dead ? damage : -99; //dead;
         }
 
         public static void Defence(Robot robot, ActionStrength defenceStrength)
