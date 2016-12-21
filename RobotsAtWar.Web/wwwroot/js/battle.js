@@ -1,5 +1,7 @@
 var actionInpactTextElement;
 
+var battleHeaderElement;
+
 var robotHealthBarElement;
 var enemyHealthBarElement;
 
@@ -13,6 +15,7 @@ function onPageLoad() {
     enableButtonPopovers(".action_buttons .rest", ".rest_buttons");
 
     actionInpactTextElement = $(".action_impact_text")[0];
+    battleHeaderElement = $(".timer h1")[0];
     robotHealthBarElement = $(".robot_healt_bar .progress-bar")[0];
     enemyHealthBarElement = $(".enemy_healt_bar .progress-bar")[0];
 
@@ -59,6 +62,7 @@ function attack(strength) {
                 case -99:
                     enemyLife = 0;
                     controlHealthBar(enemyLife, enemyHealthBarElement);
+                    battleStatus("You Win!", "green");
                     setActionImpactText("dead", "red");
                     break;
                 default:
@@ -148,18 +152,16 @@ function setDefenceText(defenceState) {
 }
 
 function startPreparationCountdown(time) {
-    var timerElement = $(".timer h1")[0];
-
     var countdownId = setInterval(function () {
-        timerElement.innerHTML = --time;
+        battleHeaderElement.innerHTML = --time;
         if (time === 0) {
-            timerElement.innerHTML = "START!";
+            battleHeaderElement.innerHTML = "START!";
         }
     }, 1000);
 
     setTimeout(function () {
         clearInterval(countdownId);
-        timerElement.innerHTML = "";
+        battleHeaderElement.innerHTML = "";
     }, (time+1) * 1000);
 }
 
@@ -180,6 +182,7 @@ function robotStatusPolling()
                 }
                 else if (response === "Dead") {
                     robotLife = 0;
+                    battleStatus("You Lose!", "red");
                     controlHealthBar(robotLife, robotHealthBarElement);
                     setActionImpactText(response, "black");
                 }
@@ -192,4 +195,9 @@ function controlHealthBar(life, healthBarElement) {
 
     healthBarElement.style.width = healthBarPercentage + "%";
     healthBarElement.innerHTML = life;
+}
+
+function battleStatus(text, color) {
+    battleHeaderElement.innerHTML = text;
+    battleHeaderElement.style.color = color;
 }
