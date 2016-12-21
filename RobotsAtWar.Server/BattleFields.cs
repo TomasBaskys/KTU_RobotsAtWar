@@ -17,16 +17,11 @@ namespace RobotsAtWar.Server
             return battleFieldId;
         }
 
-        public static void JoinBattleField(string battleFieldId, string robotId)
+        public static void JoinBattleField(string battleFieldId, string robotId, PlayType playType)
         {
             BattleField battleField = GetBattleField(battleFieldId);
 
-            battleField.RegisterRobot(robotId);
-
-            if (battleField.AreRobotsReady())
-            {
-                battleField.StartBattle();
-            }
+            battleField.RegisterRobot(robotId, playType);
         }
 
         public static IEnumerable<Battle> GetBattleFields()

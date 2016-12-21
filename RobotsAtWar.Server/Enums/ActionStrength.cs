@@ -6,4 +6,12 @@
         Medium = 2,
         Strong = 3
     }
+
+    public enum Action
+    {
+        Attack,
+        Defence,
+        Rest,
+        Check
+    }
 }

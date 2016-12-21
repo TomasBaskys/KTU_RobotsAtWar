@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,20 +8,23 @@ namespace RobotsAtWar.Server.Readers
 {
     public class RobotReader
     {
-        public Robot GetRobotInfo(string robotId)
+        public Robot GetRobotInfo(string robotId, PlayType playType = PlayType.Manual)
         {
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["RobotsAtWarDB"].ConnectionString))
             {
                 var query = $@"
 SELECT 
-    ID_Robot AS RobotId,
-    RobotName
+    R.ID_Robot AS RobotId,
+    R.RobotName,
+	S.Strategy
 FROM 
-    [dbo].[Robots] 
+    [dbo].[Robots] R
+LEFT JOIN 
+	[dbo].[Strategies] S ON S.ID_Robot = R.ID_Robot
 WHERE 
-    ID_Robot = '{robotId}'";
+    R.ID_Robot = '{robotId}'";
 
-                return db.Query<Robot>(query).FirstOrDefault();
+                return new Robot(db.Query(query).FirstOrDefault(), playType);
             }
         }
     }

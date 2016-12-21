@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RobotsAtWar.Server.Enums;
+using System.Threading.Tasks;
 using RobotsAtWar.Server.Readers;
 
 namespace RobotsAtWar.Server
@@ -11,9 +11,11 @@ namespace RobotsAtWar.Server
         private readonly int BattleFieldCapacity = 2;
 
         private readonly string _hostId;
+
         public List<Robot> Robots { get; }
 
         public readonly string RoomId;
+
         public bool IsBattleRunning { get; set; }
 
         public BattleField(string hostId, out string battleFieldId)
@@ -24,10 +26,10 @@ namespace RobotsAtWar.Server
             RoomId = battleFieldId = Guid.NewGuid().ToString();
         }
 
-        public void RegisterRobot(string robotId)
+        public void RegisterRobot(string robotId, PlayType playType)
         {
             var reader = new RobotReader();
-            Robot robot = reader.GetRobotInfo(robotId);
+            Robot robot = reader.GetRobotInfo(robotId, playType);
             robot.Status = new RobotStatus();
 
             Robots.Add(robot);
@@ -73,8 +75,9 @@ namespace RobotsAtWar.Server
             return Robots.FirstOrDefault(r => r.Status.Life > 0);
         }
 
-        public void StartBattle()
+        public async void StartBattle()
         {
+            await Task.Delay(3000);
             IsBattleRunning = true;
         }
     }
