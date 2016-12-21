@@ -22,7 +22,7 @@ namespace RobotsAtWar.WebApi.Controllers
             }
             else
             {
-                damage = -99;
+                damage = -99; //battle not running
             }
 
             return damage;
