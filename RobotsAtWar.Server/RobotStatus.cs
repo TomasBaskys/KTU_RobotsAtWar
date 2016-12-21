@@ -46,10 +46,13 @@ namespace RobotsAtWar.Server
             }
         }
 
+        public int LastReceivedDamage { get; set; }
+
         public RobotStatus()
         {
             RobotState = RobotState.Idle;
-            Life = 100;
+            Life = 500;
+            LastReceivedDamage = 0;
         }
 
     }

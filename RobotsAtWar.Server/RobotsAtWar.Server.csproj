@@ -95,6 +95,7 @@
     <Compile Include="Skills\IDefenceSkill.cs" />
     <Compile Include="Skills\IRestSkill.cs" />
     <Compile Include="Skills\RestSkill.cs" />
+    <Compile Include="StrategyExecutor.cs" />
     <Compile Include="Tools\ConfigSettings.cs" />
     <Compile Include="RobotActions.cs" />
     <Compile Include="Robot.cs" />

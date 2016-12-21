@@ -1,4 +1,8 @@
 var actionInpactTextElement;
+var robotHealthBarElement;
+
+var maxRobotLife = 500;
+var robotLife = 500;
 
 function onPageLoad() {
     enableButtonPopovers(".action_buttons .attack", ".attack_buttons");
@@ -6,8 +10,11 @@ function onPageLoad() {
     enableButtonPopovers(".action_buttons .rest", ".rest_buttons");
 
     actionInpactTextElement = $(".action_impact_text")[0];
+    robotHealthBarElement = $(".robot_healt_bar .progress-bar")[0];
 
     startPreparationCountdown(3);
+
+    robotStatusPolling();
 }
 
 function enableButtonPopovers(popoverSelector, contentSelector) {
@@ -108,15 +115,13 @@ function clearActionBar(timeToWait) {
     }, timeToWait * 1000 + 100);
 }
 
-function setActionImpactText(impact, color, timeToShow) {
-    timeToShow = typeof timeToShow !== 'undefined' ? timeToShow : 500;
-
+function setActionImpactText(impact, color) {
     actionInpactTextElement.innerHTML = impact;
     actionInpactTextElement.style.color = color;
 
     setTimeout(function () {
         actionInpactTextElement.innerHTML = "";
-    }, timeToShow);
+    }, 500);
 }
 
 function setDefenceText(defenceState) {
@@ -148,4 +153,33 @@ function startPreparationCountdown(time) {
         clearInterval(countdownId);
         timerElement.innerHTML = "";
     }, (time+1) * 1000);
+}
+
+function robotStatusPolling()
+{
+    var battleFieldId = sessionStorage.getItem("battleFieldId");
+    var robotId = sessionStorage.getItem("robotId");
+
+    setInterval(function () {
+        $.get('http://localhost:1235/api/battlefield/robotstatus?' +
+            'battleFieldId=' + battleFieldId +
+            '&robotId=' + robotId,
+            function (response) {
+                if (response !== "" && Number(response) == response) {
+                    controlRobotHealthBar(Number(response));
+                    setActionImpactText(response, "black");
+                }
+                else if (response === "Dead") {
+                    setActionImpactText(response, "black");
+                }
+            });
+    }, 100);
+}
+
+function controlRobotHealthBar(damage) {
+    robotLife -= damage;
+
+    var healthBarPercentage = robotLife / maxRobotLife * 100;
+
+    robotHealthBarElement.style.width = healthBarPercentage + "%";
 }

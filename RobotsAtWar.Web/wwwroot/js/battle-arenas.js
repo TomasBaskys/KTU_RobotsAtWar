@@ -73,11 +73,15 @@ function SetSelectedRoomId(battleId) {
 function JoinBattle() {
 
     var robotId = sessionStorage.getItem("robotId");
-    $.get("http://localhost:1235/api/battlefield/joinbattle?battleId=" + SelectedBattleId + "&robotId=" + robotId)
-        .done(function () {
+    $.get("http://localhost:1235/api/battlefield/joinbattle?" +
+            "battleId=" + SelectedBattleId +
+            "&robotId=" + robotId +
+            "&playType=" + "auto"
+            )
+        .done(function() {
             alert("second success");
         })
-        .fail(function () {
+        .fail(function() {
             alert("error");
         });
 }

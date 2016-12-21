@@ -30,8 +30,6 @@ namespace RobotsAtWar.Server
 
         public string RobotName { get; set; }
 
-        public RobotState State { get; set; }
-
         public RobotStatus Status { get; set; }
 
         public bool Ready { get; set; }
@@ -58,6 +56,6 @@ namespace RobotsAtWar.Server
     {
         public Action Action { get; set; }
 
-        public ActionStrength? Level { get; set; }
+        public ActionStrength Level { get; set; }
     }
 }

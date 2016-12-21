@@ -14,7 +14,7 @@ namespace RobotsAtWar.WebApi.Controllers
             int damage;
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
-            if (battleField.IsBattleRunning)
+            if (battleField.BattleState == BattleState.Running)
             {
                 Robot robot = battleField.GetRobot(robotId);
 
@@ -33,7 +33,7 @@ namespace RobotsAtWar.WebApi.Controllers
         {
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
-            if (battleField.IsBattleRunning)
+            if (battleField.BattleState == BattleState.Running)
             {
                 Robot robot = battleField.GetRobot(robotId);
 
@@ -48,7 +48,7 @@ namespace RobotsAtWar.WebApi.Controllers
 
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
-            if (battleField.IsBattleRunning)
+            if (battleField.BattleState == BattleState.Running)
             {
                 Robot robot = battleField.GetRobot(robotId);
 
@@ -63,7 +63,7 @@ namespace RobotsAtWar.WebApi.Controllers
         {
             BattleField battleField = BattleFields.GetBattleField(battleFieldId);
 
-            if (battleField.IsBattleRunning)
+            if (battleField.BattleState == BattleState.Running)
             {
                 Robot robot = battleField.GetRobot(robotId);
 

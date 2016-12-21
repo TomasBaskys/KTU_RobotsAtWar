@@ -19,11 +19,11 @@
         public string WinnerRobotId { get; set; }
     }
 
-    public enum BattleState
+    /*public enum BattleState
     {
         Pending = 1,
         InProgress = 2,
         Done = 3,
         Canceled = 4
-    }
+    }*/
 }

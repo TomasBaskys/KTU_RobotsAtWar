@@ -14,9 +14,9 @@ namespace RobotsAtWar.Server
 
         public List<Robot> Robots { get; }
 
-        public readonly string RoomId;
+        public BattleState BattleState { get; set; }
 
-        public bool IsBattleRunning { get; set; }
+        public readonly string RoomId;
 
         public BattleField(string hostId, out string battleFieldId)
         {
@@ -78,7 +78,24 @@ namespace RobotsAtWar.Server
         public async void StartBattle()
         {
             await Task.Delay(3000);
-            IsBattleRunning = true;
+            BattleState = BattleState.Running;
+
+            foreach (var robot in Robots)
+            {
+                if (robot.PlayType == PlayType.Auto)
+                {
+                    var strategyExecutor = new StrategyExecutor();
+                    strategyExecutor.Start(robot, RoomId);
+                }
+            }
         }
+    }
+
+    public enum BattleState
+    {
+        Pending,
+        Running,
+        Finished,
+        Canceled
     }
 }

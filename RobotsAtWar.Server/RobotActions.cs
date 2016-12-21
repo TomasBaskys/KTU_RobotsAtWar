@@ -9,14 +9,14 @@ namespace RobotsAtWar.Server
         {
             int damage;
 
-            robot.State = RobotState.Attacking;
+            robot.Status.RobotState= RobotState.Attacking;
 
             Thread.Sleep((int)attackStrength * 1000);
 
-            if (robot.State == RobotState.Attacking)
+            if (robot.Status.RobotState == RobotState.Attacking)
             {
                 damage = MakeDamage(robot.Enemy, attackStrength);
-                robot.State = RobotState.Idle;
+                robot.Status.RobotState = RobotState.Idle;
             }
             else
             {
@@ -30,35 +30,36 @@ namespace RobotsAtWar.Server
         {
             var damage = 0;
 
-            if (enemy.State != RobotState.Defending)
+            if (enemy.Status.RobotState != RobotState.Defending)
             {
                 damage = CalculateInpact(attackStrength, 10);
 
                 enemy.Status.Life -= damage;
-                enemy.State = IsAlive(enemy) ? RobotState.Interrupted : RobotState.Dead;
+                enemy.Status.RobotState = IsAlive(enemy) ? RobotState.Interrupted : RobotState.Dead;
+                enemy.Status.LastReceivedDamage = damage;
             }
 
-            return enemy.State != RobotState.Dead ? damage : -99; //dead;
+            return enemy.Status.RobotState != RobotState.Dead ? damage : -99; //dead;
         }
 
         public static void Defence(Robot robot, ActionStrength defenceStrength)
         {
-            robot.State = RobotState.Defending;
+            robot.Status.RobotState = RobotState.Defending;
 
             Thread.Sleep((int)defenceStrength * 1000);
 
-            robot.State = RobotState.Idle;
+            robot.Status.RobotState = RobotState.Idle;
         }
 
         public static int Rest(Robot robot, ActionStrength restStrength)
         {
             int healthToRestore = 0;
 
-            robot.State = RobotState.Resting;
+            robot.Status.RobotState = RobotState.Resting;
 
             Thread.Sleep((int)restStrength * 1000);
 
-            if (robot.State == RobotState.Resting)
+            if (robot.Status.RobotState == RobotState.Resting)
             {
                 //Magic formula
                 healthToRestore = CalculateInpact(restStrength, 5);

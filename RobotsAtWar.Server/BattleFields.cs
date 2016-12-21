@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RobotsAtWar.Server.Enums;
 using RobotsAtWar.Server.Readers;
 
 namespace RobotsAtWar.Server
@@ -40,6 +41,30 @@ namespace RobotsAtWar.Server
             }
 
             return battleField;
+        }
+
+        public static string RobotStatus(string battleFieldId, string robotId)
+        {
+            BattleField battle = GetBattleField(battleFieldId);
+
+            Robot robot = battle.GetRobot(robotId);
+            RobotStatus status = robot.Status;
+
+            if (status.RobotState == RobotState.Interrupted
+                && status.LastReceivedDamage > 0)
+            {
+                var damage = status.LastReceivedDamage.ToString();
+
+                status.LastReceivedDamage = 0;
+
+                return damage;
+            }
+            if (status.RobotState == RobotState.Dead)
+            {
+                return RobotState.Dead.ToString();
+            }
+
+            return null;
         }
     }
 }

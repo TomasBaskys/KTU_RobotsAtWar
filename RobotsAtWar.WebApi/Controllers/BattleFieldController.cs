@@ -44,6 +44,12 @@ namespace RobotsAtWar.WebApi.Controllers
 
             return battleFieldId;
         }
+
+        [HttpGet]
+        public string RobotStatus(string battleFieldId, string robotId)
+        {
+            return BattleFields.RobotStatus(battleFieldId, robotId);
+        }
     }
 }
 
