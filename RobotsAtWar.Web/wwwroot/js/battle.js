@@ -1,8 +1,11 @@
 var actionInpactTextElement;
+
 var robotHealthBarElement;
+var enemyHealthBarElement;
 
 var maxRobotLife = 500;
 var robotLife = 500;
+var enemyLife = 500;
 
 function onPageLoad() {
     enableButtonPopovers(".action_buttons .attack", ".attack_buttons");
@@ -11,6 +14,7 @@ function onPageLoad() {
 
     actionInpactTextElement = $(".action_impact_text")[0];
     robotHealthBarElement = $(".robot_healt_bar .progress-bar")[0];
+    enemyHealthBarElement = $(".enemy_healt_bar .progress-bar")[0];
 
     startPreparationCountdown(3);
 
@@ -53,9 +57,13 @@ function attack(strength) {
                     setActionImpactText("interupted", "red");
                     break;
                 case -99:
+                    enemyLife = 0;
+                    controlHealthBar(enemyLife, enemyHealthBarElement);
                     setActionImpactText("dead", "red");
                     break;
                 default:
+                    enemyLife -= response;
+                    controlHealthBar(enemyLife, enemyHealthBarElement);
                     setActionImpactText(response, "red");
             }
         });
@@ -166,20 +174,22 @@ function robotStatusPolling()
             '&robotId=' + robotId,
             function (response) {
                 if (response !== "" && Number(response) == response) {
-                    controlRobotHealthBar(Number(response));
+                    robotLife -= response;
+                    controlHealthBar(robotLife, robotHealthBarElement);
                     setActionImpactText(response, "black");
                 }
                 else if (response === "Dead") {
+                    robotLife = 0;
+                    controlHealthBar(robotLife, robotHealthBarElement);
                     setActionImpactText(response, "black");
                 }
             });
     }, 100);
 }
 
-function controlRobotHealthBar(damage) {
-    robotLife -= damage;
+function controlHealthBar(life, healthBarElement) {
+    var healthBarPercentage = life / maxRobotLife * 100;
 
-    var healthBarPercentage = robotLife / maxRobotLife * 100;
-
-    robotHealthBarElement.style.width = healthBarPercentage + "%";
+    healthBarElement.style.width = healthBarPercentage + "%";
+    healthBarElement.innerHTML = life;
 }
