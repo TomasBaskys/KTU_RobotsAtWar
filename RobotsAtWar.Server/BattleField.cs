@@ -10,20 +10,34 @@ namespace RobotsAtWar.Server
     {
         private readonly int BattleFieldCapacity = 2;
 
-        private readonly string _hostId;
+        public readonly string HostRobotId;
+
+        public string HostRobotName { get; set; }
 
         public List<Robot> Robots { get; }
 
         public BattleState BattleState { get; set; }
 
-        public readonly string RoomId;
+        public readonly string BattleId;
 
-        public BattleField(string hostId, out string battleFieldId)
+        public readonly string BattleName;
+
+        public readonly RoomType BattleType;
+
+        public BattleField()
         {
-            _hostId = hostId;
+            Robots = new List<Robot>(BattleFieldCapacity);
+        }
+
+        public BattleField(string hostRobotId, string battleName, RoomType battleType, string battleId = null)
+        {
+            HostRobotId = hostRobotId;
             Robots = new List<Robot>(BattleFieldCapacity);
 
-            RoomId = battleFieldId = Guid.NewGuid().ToString();
+            BattleId = battleId ?? Guid.NewGuid().ToString();
+            BattleName = battleName;
+            BattleType = battleType;
+            BattleState = BattleState.Pending;
         }
 
         public void RegisterRobot(string robotId, PlayType playType)
@@ -85,17 +99,23 @@ namespace RobotsAtWar.Server
                 if (robot.PlayType == PlayType.Auto)
                 {
                     var strategyExecutor = new StrategyExecutor();
-                    strategyExecutor.Start(robot, RoomId);
+                    strategyExecutor.Start(robot, BattleId);
                 }
             }
         }
     }
 
+    public enum RoomType
+    {
+        Public,
+        Private
+    }
+
     public enum BattleState
     {
-        Pending,
-        Running,
-        Finished,
-        Canceled
+        Pending = 1,
+        Running = 2,
+        Finished = 3,
+        Canceled = 4
     }
 }

@@ -9,13 +9,9 @@ namespace RobotsAtWar.WebApi.Controllers
     public class BattleFieldController : ApiController
     {
         [HttpGet]
-        public string HostBattle(string robotId, PlayType playType)
+        public string HostBattle(string robotId, string battleName, RoomType roomType)
         {
-            string battleFieldId = BattleFields.CreateBattleField(robotId);
-
-            BattleFields.JoinBattleField(battleFieldId, robotId, playType);
-
-            return battleFieldId;
+            return BattleFields.CreateBattleField(robotId, battleName, roomType);
         }
 
         [HttpGet]
@@ -25,15 +21,29 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Battle> GetBattles()
+        public IEnumerable<BattleField> GetBattles()
         {
             return BattleFields.GetBattleFields();
         }
 
         [HttpGet]
+        public BattleField GetBattle(string battleFieldId)
+        {
+            return BattleFields.GetBattleField(battleFieldId);
+        }
+
+        [HttpGet]
+        public List<Robot> RobotsInBattle(string battleFieldId)
+        {
+            BattleField battle = BattleFields.GetBattleField(battleFieldId);
+
+            return battle.Robots;
+        }
+
+        [HttpGet]
         public string StartDemoBattle(string robotId)
         {
-            string battleFieldId = BattleFields.CreateBattleField(robotId);
+            string battleFieldId = BattleFields.CreateBattleField(robotId, "DemoBattle", RoomType.Private);
 
             BattleFields.JoinBattleField(battleFieldId, robotId, PlayType.Manual);
             BattleFields.JoinBattleField(battleFieldId, "DEMO", PlayType.Auto);

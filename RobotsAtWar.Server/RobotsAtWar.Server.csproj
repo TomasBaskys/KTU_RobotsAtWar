@@ -104,6 +104,7 @@
     <Compile Include="Weapons\BareHands.cs" />
     <Compile Include="Weapons\DoubleSidedAxe.cs" />
     <Compile Include="Weapons\IWeapon.cs" />
+    <Compile Include="Writers\BattleWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

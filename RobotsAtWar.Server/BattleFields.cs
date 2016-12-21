@@ -3,19 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using RobotsAtWar.Server.Enums;
 using RobotsAtWar.Server.Readers;
+using RobotsAtWar.Server.Writers;
 
 namespace RobotsAtWar.Server
 {
     public static class BattleFields
     {
-        private static readonly IList<BattleField> Rooms = new List<BattleField>();
+        private static readonly List<BattleField> Rooms = new List<BattleField>();
 
-        public static string CreateBattleField(string hostId)
+        public static void LoadBattleField()
         {
-            string battleFieldId;
-            Rooms.Add(new BattleField(hostId, out battleFieldId));
+            var battles = GetBattleFields();
 
-            return battleFieldId;
+            foreach (var battleField in battles)
+            {
+                var battle = new BattleField(
+                    battleField.HostRobotId, 
+                    battleField.BattleName, 
+                    battleField.BattleType,
+                    battleField.BattleId);
+
+                Rooms.Add(battle);
+            }
+        }
+
+        public static string CreateBattleField(string hostId, string battleFieldName, RoomType roomType)
+        {
+            var battle = new BattleField(hostId, battleFieldName, roomType);
+            Rooms.Add(battle);
+
+            var battleWriter = new BattleWriter();
+            battleWriter.AddBattle(battle);
+
+            return battle.BattleId;
         }
 
         public static void JoinBattleField(string battleFieldId, string robotId, PlayType playType)
@@ -25,7 +45,7 @@ namespace RobotsAtWar.Server
             battleField.RegisterRobot(robotId, playType);
         }
 
-        public static IEnumerable<Battle> GetBattleFields()
+        public static IEnumerable<BattleField> GetBattleFields()
         {
             var battleReader = new BattleReader();
             return battleReader.GetActiveBattles();
@@ -33,8 +53,8 @@ namespace RobotsAtWar.Server
 
         public static BattleField GetBattleField(string battleFieldId)
         {
-            BattleField battleField = Rooms.FirstOrDefault(r => r.RoomId == battleFieldId);
-
+            BattleField battleField = Rooms.FirstOrDefault(r => r.BattleId == battleFieldId);
+            
             if (battleField == null)
             {
                 throw new ArgumentException($"Battle Field with id: '{battleFieldId}' does not exists.");

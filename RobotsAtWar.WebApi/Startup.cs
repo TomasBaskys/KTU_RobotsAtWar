@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using RobotsAtWar.Server;
 
 namespace RobotsAtWar.WebApi
 {
@@ -30,6 +31,7 @@ namespace RobotsAtWar.WebApi
 
         public void Start()
         {
+            BattleFields.LoadBattleField();
             _server.OpenAsync();
         }
 
