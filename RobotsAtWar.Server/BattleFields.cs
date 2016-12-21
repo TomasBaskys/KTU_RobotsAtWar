@@ -61,7 +61,12 @@ namespace RobotsAtWar.Server
             }
             if (status.RobotState == RobotState.Dead)
             {
+                battle.BattleState = BattleState.Finished;
                 return RobotState.Dead.ToString();
+            }
+            if (robot.Enemy.Status.RobotState == RobotState.Dead)
+            {
+                battle.BattleState = BattleState.Finished;
             }
 
             return null;
