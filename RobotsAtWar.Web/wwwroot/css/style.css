@@ -180,3 +180,13 @@ body {
     text-align: center;
     width: 100%;
 }
+
+.timer {
+    text-align: center;
+}
+
+.timer h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffaa00;
+}
