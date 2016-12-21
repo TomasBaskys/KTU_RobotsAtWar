@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace RobotsAtWar.Server
 {
@@ -33,6 +34,8 @@ namespace RobotsAtWar.Server
                     default:
                         throw new InvalidOperationException($"Action '{robotTurn.Action}' is invalid. Possible actions: 'Attack', 'Defence', 'Rest', 'Check'.'");
                 }
+
+                Thread.Sleep(500);
 
                 index++;
             }
