@@ -50,7 +50,7 @@ function attack(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    $.get('http://localhost:1235/api/actions/attack?' +
+    $.get('http://PCTOMBASL1:1235/api/actions/attack?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
         '&attackStrength=' + strength,
@@ -84,7 +84,7 @@ function defence(strength) {
 
     setDefenceText("start");
 
-    $.get('http://localhost:1235/api/actions/defence?' +
+    $.get('http://PCTOMBASL1:1235/api/actions/defence?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
         '&defenceStrength=' + strength,
@@ -101,7 +101,7 @@ function rest(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    $.get('http://localhost:1235/api/actions/rest?' +
+    $.get('http://PCTOMBASL1:1235/api/actions/rest?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
         '&restStrength=' + strength,
@@ -171,7 +171,7 @@ function robotStatusPolling()
     var robotId = sessionStorage.getItem("robotId");
 
     setInterval(function () {
-        $.get('http://localhost:1235/api/battlefield/robotstatus?' +
+        $.get('http://PCTOMBASL1:1235/api/battlefield/robotstatus?' +
             'battleFieldId=' + battleFieldId +
             '&robotId=' + robotId,
             function (response) {

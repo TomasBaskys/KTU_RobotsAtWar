@@ -41,6 +41,14 @@ namespace RobotsAtWar.WebApi.Controllers
         }
 
         [HttpGet]
+        public int RobotsInBattleCount(string battleFieldId)
+        {
+            BattleField battle = BattleFields.GetBattleField(battleFieldId);
+
+            return battle.Robots.Count;
+        }
+
+        [HttpGet]
         public string StartDemoBattle(string robotId)
         {
             string battleFieldId = BattleFields.CreateBattleField(robotId, "DemoBattle", RoomType.Private);

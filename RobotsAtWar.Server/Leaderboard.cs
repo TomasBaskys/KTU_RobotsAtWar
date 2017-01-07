@@ -8,7 +8,7 @@ namespace RobotsAtWar.Server
     {
         private const string DbConnectionString =
            // "Data Source=10.2.40.195;Initial Catalog=RobotDB;User ID=sa;Password=zZz,.123";
-            "Data Source=localhost;Initial Catalog=RobotDB;User ID=martynas;Password=databasepass";
+            "Data Source=PCTOMBASL1;Initial Catalog=RobotDB;User ID=martynas;Password=databasepass";
 
 
         public static int GetLeaderboardPosition(string userGuid)

@@ -43,6 +43,11 @@ namespace RobotsAtWar.Server
             BattleField battleField = GetBattleField(battleFieldId);
 
             battleField.RegisterRobot(robotId, playType);
+
+            if (battleField.Robots.Count == 2)
+            {
+                battleField.StartBattle();
+            }
         }
 
         public static IEnumerable<BattleField> GetBattleFields()
@@ -57,7 +62,7 @@ namespace RobotsAtWar.Server
             
             if (battleField == null)
             {
-                throw new ArgumentException($"Battle Field with id: '{battleFieldId}' does not exists.");
+                throw new ArgumentException($"Battlefield with id: '{battleFieldId}' does not exist.");
             }
 
             return battleField;

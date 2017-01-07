@@ -12,14 +12,14 @@ function onPageLoad() {
 }
 
 function GetBattles() {
-    $.get('http://localhost:1235/api/battlefield/getbattles',
+    $.get('http://PCTOMBASL1:1235/api/battlefield/getbattles',
         function (battles) {
             FillBattleTable(battles);
         });
 }
 
 function RefreshBattlesTable() {
-    $.get('http://localhost:1235/api/battlefield/getbattles',
+    $.get('http://PCTOMBASL1:1235/api/battlefield/getbattles',
         function (battles) {
             var battleTable = document.getElementById('battles_table');
 
@@ -38,7 +38,7 @@ function hostBattle() {
         ? 'public'
         : 'private';
 
-    $.get('http://localhost:1235/api/battlefield/hostbattle?' +
+    $.get('http://PCTOMBASL1:1235/api/battlefield/hostbattle?' +
             'robotId=' + robotId +
             '&battleName=' + battleName +
             '&roomType=' + battleType,
@@ -58,7 +58,7 @@ function hostBattle() {
 function startDemoBattle() {
     var robotId = sessionStorage.getItem('robotId');
 
-    $.get('http://localhost:1235/api/battlefield/startdemobattle?robotId=' + robotId,
+    $.get('http://PCTOMBASL1:1235/api/battlefield/startdemobattle?robotId=' + robotId,
         function (battleId) {
             sessionStorage.setItem('battleFieldId', battleId);
         })
@@ -99,7 +99,7 @@ function SetSelectedRoomId(battleId) {
 function JoinBattle() {
 
     var robotId = sessionStorage.getItem('robotId');
-    $.get('http://localhost:1235/api/battlefield/joinbattle?' +
+    $.get('http://PCTOMBASL1:1235/api/battlefield/joinbattle?' +
             'battleId=' + SelectedBattleId +
             '&robotId=' + robotId +
             '&playType=' + 'auto'
@@ -119,7 +119,7 @@ function joinModal() {
     var battleName;
     var opponentId;
 
-    $.get('http://localhost:1235/api/battlefield/getbattle?' +
+    $.get('http://PCTOMBASL1:1235/api/battlefield/getbattle?' +
             'battleFieldId=' + SelectedBattleId,
             function (response) {
                 battleName = response.BattleName;
@@ -149,7 +149,7 @@ function fillJoinModal(battleName, battleId, robotId, opponentId) {
         }, 300);
 
         waitingOpponentId = setInterval(function () {
-            $.get('http://localhost:1235/api/battlefield/robotsinbattle?' +
+            $.get('http://PCTOMBASL1:1235/api/battlefield/robotsinbattle?' +
                 'battleFieldId=' + battleId,
                 function (response) {
                     if (response.length === 1) {
@@ -157,7 +157,7 @@ function fillJoinModal(battleName, battleId, robotId, opponentId) {
                         opponentIdElement.innerHTML = response[0].RobotId;
                         $('#join_battle_modal #join_button')[0].className =
                             $('#join_battle_modal #join_button')[0].className.replace("disabled", "active");;
-
+                        clearInterval(waitingOpponentId);
                     }
                 });
         }, 1000);
@@ -173,7 +173,7 @@ function joinBattle() {
         ? "manual"
         : "auto";
 
-    $.get('http://localhost:1235/api/battlefield/joinbattle?' +
+    $.get('http://PCTOMBASL1:1235/api/battlefield/joinbattle?' +
             'battleId=' + battleId +
             '&robotId=' + robotId +
             '&playType=' + battleType,
@@ -184,10 +184,11 @@ function joinBattle() {
 
 function waitForBattle(battleFieldId) {
     setInterval(function () {
-        $.get('http://localhost:1235/api/battlefield/robotsinbattle?' +
+        $.get('http://PCTOMBASL1:1235/api/battlefield/robotsinbattlecount?' +
             'battleFieldId=' + battleFieldId,
             function (response) {
-                if (response.length === 2) {
+                if (response === 2) {
+                    sessionStorage.setItem("battleFieldId", battleFieldId);
                     window.location.href = '/RobotsAtWar/battle.html';
                 }
             });
