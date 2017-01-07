@@ -28,11 +28,8 @@ namespace RobotsAtWar.Server
                     case "Rest":
                         RobotActions.Rest(robot, robotTurn.Level);
                         break;
-                    case "Check":
-                        RobotActions.Check(robot);
-                        break;
                     default:
-                        throw new InvalidOperationException($"Action '{robotTurn.Action}' is invalid. Possible actions: 'Attack', 'Defence', 'Rest', 'Check'.'");
+                        throw new InvalidOperationException($"Action '{robotTurn.Action}' is invalid. Possible actions: 'Attack', 'Defence', 'Rest'.'");
                 }
 
                 Thread.Sleep(500);

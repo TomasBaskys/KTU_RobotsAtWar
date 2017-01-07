@@ -4,7 +4,6 @@
     { 
         Attacking,
         Resting, 
-        Checking, 
         Defending,
         Interrupted,
         Stunned,

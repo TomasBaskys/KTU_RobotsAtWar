@@ -57,21 +57,6 @@ namespace RobotsAtWar.WebApi.Controllers
 
             return healPoints;
         }
-
-        [HttpGet]
-        public RobotStatus Check(string battleFieldId, string robotId)
-        {
-            BattleField battleField = BattleFields.GetBattleField(battleFieldId);
-
-            if (battleField.BattleState == BattleState.Running)
-            {
-                Robot robot = battleField.GetRobot(robotId);
-
-                return RobotActions.Check(robot);
-            }
-
-            return null;
-        }
     }
 }
 

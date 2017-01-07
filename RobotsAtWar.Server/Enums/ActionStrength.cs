@@ -11,7 +11,6 @@
     {
         Attack,
         Defence,
-        Rest,
-        Check
+        Rest
     }
 }

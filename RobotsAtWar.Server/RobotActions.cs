@@ -68,11 +68,6 @@ namespace RobotsAtWar.Server
             return healthToRestore;
         }
 
-        public static RobotStatus Check(Robot robot)
-        {
-            return robot.Enemy.Status;
-        }
-
         private static int CalculateInpact(ActionStrength actionStrength, int number)
         {
             return (number + ((int)actionStrength - 1) * 2) * (int)actionStrength;

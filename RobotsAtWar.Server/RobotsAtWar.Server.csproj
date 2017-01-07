@@ -88,10 +88,8 @@
     <Compile Include="Shields\LightShield.cs" />
     <Compile Include="Shields\NormalShield.cs" />
     <Compile Include="Skills\AttackSkill.cs" />
-    <Compile Include="Skills\CheckSkill.cs" />
     <Compile Include="Skills\DefenceSkill.cs" />
     <Compile Include="Skills\IAttackSkill.cs" />
-    <Compile Include="Skills\ICheckSkill.cs" />
     <Compile Include="Skills\IDefenceSkill.cs" />
     <Compile Include="Skills\IRestSkill.cs" />
     <Compile Include="Skills\RestSkill.cs" />
