@@ -6,9 +6,12 @@
 
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 
+    <script src="js/strategy.js"></script>
 </head>
-<body>
+<body onload="onPageLoad()">
 
     <div class="container">
 
@@ -34,37 +37,19 @@
                     <h1>Strategy Builder</h1>
                 </div>
                 <div class="table-responsive col-md-6">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table class="strategy_table table table-bordered table-hover table-striped">
                         <thead>
-                            <tr>
-                                <th>Turn No.</th>
-                                <th>Action</th>
-                                <th>Level</th>
-                            </tr>
+                        <tr>
+                            <th>Turn No.</th>
+                            <th>Action</th>
+                            <th>Level</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Attack</td>
-                                <td>Power</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Defence</td>
-                                <td>Normal</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Rest</td>
-                                <td>Quick</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Attack</td>
-                                <td>Quick</td>
-                            </tr>
                         </tbody>
                     </table>
+
+                    <button type="button" class="btn btn-default" onclick="removeLastItem()">Remove Last Item</button>
                 </div>
 
                 <div class="col-md-5">
@@ -74,19 +59,19 @@
                         </div>
                         <div class="strategy_buttons">
                             <div class="attack_buttons">
-                                <button type="button" class="btn btn-default easy">Attack</button>
-                                <button type="button" class="btn btn-default medium">Attack</button>
-                                <button type="button" class="btn btn-default hard">Attack</button>
+                                <button type="button" class="btn btn-default easy" onclick="addStrategy('Attack', 'Weak')">Attack</button>
+                                <button type="button" class="btn btn-default medium" onclick="addStrategy('Attack', 'Medium')">Attack</button>
+                                <button type="button" class="btn btn-default hard" onclick="addStrategy('Attack', 'Strong')">Attack</button>
                             </div>
                             <div class="defence_buttons">
-                                <button type="button" class="btn btn-default easy">Defence</button>
-                                <button type="button" class="btn btn-default medium">Defence</button>
-                                <button type="button" class="btn btn-default hard">Defence</button>
+                                <button type="button" class="btn btn-default easy" onclick="addStrategy('Defence', 'Weak')">Defence</button>
+                                <button type="button" class="btn btn-default medium" onclick="addStrategy('Defence', 'Medium')">Defence</button>
+                                <button type="button" class="btn btn-default hard" onclick="addStrategy('Defence', 'Strong')">Defence</button>
                             </div>
                             <div class="rest_buttons">
-                                <button type="button" class="btn btn-default easy">Rest</button>
-                                <button type="button" class="btn btn-default medium">Rest</button>
-                                <button type="button" class="btn btn-default hard">Rest</button>
+                                <button type="button" class="btn btn-default easy" onclick="addStrategy('Rest', 'Weak')">Rest</button>
+                                <button type="button" class="btn btn-default medium" onclick="addStrategy('Rest', 'Medium')">Rest</button>
+                                <button type="button" class="btn btn-default hard" onclick="addStrategy('Rest', 'Strong')">Rest</button>
                             </div>
                         </div>
                     </div>

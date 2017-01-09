@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using RobotsAtWar.Server.Readers;
 
@@ -43,7 +44,10 @@ namespace RobotsAtWar.Server
         public void RegisterRobot(string robotId, PlayType playType)
         {
             var reader = new RobotReader();
-            Robot robot = reader.GetRobotInfo(robotId, playType);
+
+            Robot robot = reader.GetRobotInfo(robotId);
+
+            robot.PlayType = playType;
             robot.Status = new RobotStatus();
 
             Robots.Add(robot);
@@ -99,7 +103,7 @@ namespace RobotsAtWar.Server
                 if (robot.PlayType == PlayType.Auto)
                 {
                     var strategyExecutor = new StrategyExecutor();
-                    strategyExecutor.Start(robot, BattleId);
+                    new Thread(() => strategyExecutor.Start(robot, BattleId)).Start();
                 }
             }
         }

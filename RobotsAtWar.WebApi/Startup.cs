@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using RobotsAtWar.Server;
 
 namespace RobotsAtWar.WebApi
@@ -13,6 +15,10 @@ namespace RobotsAtWar.WebApi
         {
             var configuration = new HttpSelfHostConfiguration(address);
             configuration.MessageHandlers.Add(new CustomHeaderHandler());
+
+            configuration.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
+            configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(
+                new StringEnumConverter());
 
             RegisterRoutes(configuration);
 

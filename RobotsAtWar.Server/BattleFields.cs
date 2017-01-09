@@ -96,5 +96,24 @@ namespace RobotsAtWar.Server
 
             return null;
         }
+
+        public static RobotsLifePoints BattleStatus(string battleFieldId, string robotId)
+        {
+            BattleField battle = GetBattleField(battleFieldId);
+
+            Robot robot = battle.GetRobot(robotId);
+
+            return new RobotsLifePoints
+            {
+                Robot = robot.Status.Life,
+                Enemy = robot.Enemy.Status.Life
+            };
+        }
+    }
+
+    public class RobotsLifePoints
+    {
+        public int Robot { get; set; }
+        public int Enemy { get; set; }
     }
 }

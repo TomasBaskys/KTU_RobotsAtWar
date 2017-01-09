@@ -172,7 +172,7 @@ body {
         background: #cccccc;
     }
 
-.action_impact_text {
+.robot_action_impact_text, .enemy_action_impact_text {
     position: absolute;
     top: 111px;
     font-size: 96px;

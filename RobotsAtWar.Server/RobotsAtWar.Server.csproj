@@ -103,6 +103,7 @@
     <Compile Include="Weapons\DoubleSidedAxe.cs" />
     <Compile Include="Weapons\IWeapon.cs" />
     <Compile Include="Writers\BattleWriter.cs" />
+    <Compile Include="Writers\StrategyWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

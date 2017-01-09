@@ -1,4 +1,5 @@
-var actionInpactTextElement;
+var robotActionInpactTextElement;
+var enemyActionInpactTextElement;
 
 var battleHeaderElement;
 
@@ -14,7 +15,9 @@ function onPageLoad() {
     enableButtonPopovers(".action_buttons .defence", ".defence_buttons");
     enableButtonPopovers(".action_buttons .rest", ".rest_buttons");
 
-    actionInpactTextElement = $(".action_impact_text")[0];
+    robotActionInpactTextElement = $(".robot_action_impact_text")[0];
+    enemyActionInpactTextElement = $(".enemy_action_impact_text")[0];
+
     battleHeaderElement = $(".timer h1")[0];
     robotHealthBarElement = $(".robot_healt_bar .progress-bar")[0];
     enemyHealthBarElement = $(".enemy_healt_bar .progress-bar")[0];
@@ -53,24 +56,7 @@ function attack(strength) {
     $.get('http://PCTOMBASL1:1235/api/actions/attack?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
-        '&attackStrength=' + strength,
-        function (response) {
-            switch (response) {
-                case -1:
-                    setActionImpactText("interupted", "red");
-                    break;
-                case -99:
-                    enemyLife = 0;
-                    controlHealthBar(enemyLife, enemyHealthBarElement);
-                    battleStatus("You Win!", "green");
-                    setActionImpactText("dead", "red");
-                    break;
-                default:
-                    enemyLife -= response;
-                    controlHealthBar(enemyLife, enemyHealthBarElement);
-                    setActionImpactText(response, "red");
-            }
-        });
+        '&attackStrength=' + strength);
 }
 
 
@@ -127,27 +113,27 @@ function clearActionBar(timeToWait) {
     }, timeToWait * 1000 + 100);
 }
 
-function setActionImpactText(impact, color) {
-    actionInpactTextElement.innerHTML = impact;
-    actionInpactTextElement.style.color = color;
+function setActionImpactText(element, impact, color) {
+    element.innerHTML = impact;
+    element.style.color = color;
 
     setTimeout(function () {
-        actionInpactTextElement.innerHTML = "";
+        element.innerHTML = "";
     }, 500);
 }
 
-function setDefenceText(defenceState) {
-    actionInpactTextElement.style.color = "black";
+function setDefenceText(element, defenceState) {
+    element.style.color = "black";
 
     switch (defenceState) {
         case "start":
-            actionInpactTextElement.innerHTML = "&#9960";
+            element.innerHTML = "&#9960";
             break;
         case "finish":
-            actionInpactTextElement.innerHTML = "";
+            element.innerHTML = "";
             break;
         default:
-            actionInpactTextElement.innerHTML = "";
+            element.innerHTML = "";
     }
 }
 
@@ -175,17 +161,34 @@ function robotStatusPolling()
             'battleFieldId=' + battleFieldId +
             '&robotId=' + robotId,
             function (response) {
-                if (response !== "" && Number(response) == response) {
-                    robotLife -= response;
-                    controlHealthBar(robotLife, robotHealthBarElement);
-                    setActionImpactText(response, "black");
+
+                var robotImpact = Number(robotHealthBarElement.innerHTML) - response.Robot;
+                var enemyImpact = Number(enemyHealthBarElement.innerHTML) - response.Enemy;
+
+                if (robotImpact > 0) {
+                    setActionImpactText(robotActionInpactTextElement, robotImpact, "red");
                 }
-                else if (response === "Dead") {
-                    robotLife = 0;
-                    battleStatus("You Lose!", "red");
-                    controlHealthBar(robotLife, robotHealthBarElement);
-                    setActionImpactText(response, "black");
+                else if (robotImpact < 0) {
+                    setActionImpactText(robotActionInpactTextElement, Math.abs(robotImpact), "green");
                 }
+                else if (enemyImpact > 0) {
+                    setActionImpactText(enemyActionInpactTextElement, enemyImpact, "red");
+                }
+                else if (enemyImpact < 0) {
+                    setActionImpactText(enemyActionInpactTextElement, Math.abs(enemyImpact), "green");
+                }
+
+                if (response.Robot <= 0) {
+                    setActionImpactText(battleHeaderElement, "You Lose!", "red");
+                }
+
+                if (response.Enemy <= 0) {
+                    setActionImpactText(battleHeaderElement, "You Win!", "green");
+                }
+
+                controlHealthBar(response.Robot, robotHealthBarElement);
+                controlHealthBar(response.Enemy, enemyHealthBarElement);
+
             });
     }, 100);
 }

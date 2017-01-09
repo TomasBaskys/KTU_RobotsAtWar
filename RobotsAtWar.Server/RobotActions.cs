@@ -63,6 +63,12 @@ namespace RobotsAtWar.Server
             {
                 //Magic formula
                 healthToRestore = CalculateInpact(restStrength, 5);
+                robot.Status.Life += healthToRestore;
+
+                if (robot.Status.Life > 500)
+                {
+                    robot.Status.Life = 500;
+                }
             }
 
             return healthToRestore;

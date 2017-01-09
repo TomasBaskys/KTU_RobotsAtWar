@@ -8,7 +8,7 @@ namespace RobotsAtWar.Server.Readers
 {
     public class RobotReader
     {
-        public Robot GetRobotInfo(string robotId, PlayType playType = PlayType.Manual)
+        public Robot GetRobotInfo(string robotId)
         {
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["RobotsAtWarDB"].ConnectionString))
             {
@@ -24,7 +24,7 @@ LEFT JOIN
 WHERE 
     R.ID_Robot = '{robotId}'";
 
-                return new Robot(db.Query(query).FirstOrDefault(), playType);
+                return new Robot(db.Query(query).FirstOrDefault());
             }
         }
     }

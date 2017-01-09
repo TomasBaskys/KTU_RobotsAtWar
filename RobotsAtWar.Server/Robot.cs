@@ -8,17 +8,16 @@ namespace RobotsAtWar.Server
 {
     public class Robot
     {
-        public Robot(dynamic row, PlayType playType)
+        public Robot(dynamic row)
         {
             RobotId = row.RobotId;
             RobotName = row.RobotName;
-            PlayType = playType;
 
             try
             {
-                RobotStrategy = playType == PlayType.Auto
+                RobotStrategy = row.Strategy != null
                     ? JsonConvert.DeserializeObject<RobotStrategy>(row.Strategy.ToString())
-                    : null;
+                    : new RobotStrategy {Strategy = new List<RobotTurn>()};
             }
             catch (ArgumentNullException)
             {
