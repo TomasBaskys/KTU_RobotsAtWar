@@ -1,39 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Robots At War</title>
+    <meta charset="utf-8">
+    <title>Robots At War</title>
 
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
-    
+
     <script src="./js/csi.min.js"></script>
+    <script src="./js/authentication.js"></script>
+
 </head>
-	<body>
+<body onload="statusCheck();">
 
-	<div class="container">
-	
-	    <div data-include="header.html"></div>
+    <div class="container">
 
-		<div data-include="menu.html"></div>
+        <div data-include="header.html"></div>
 
-	    <div class="row">
-			<div class="home col-md-offset-1">
-				<div class="header col-md-12">
-					<h1>Your Shiny Robot</h1>
-				</div>
-				<div class="robot col-md-5">
-					<img src="images/yellow_robot.jpg" alt="Robot">
-				</div>
-				<div class="robot_buttons col-md-4">
-					<button type="button" class="btn btn-default btn-lg btn-block">CUSTOMIZE ROBOT</button>
-					<button type="button" class="btn btn-default btn-lg btn-block">STATS</button>
-					<button type="button" class="btn btn-default btn-lg btn-block">STRATEGY</button>
-				</div>
-			</div>
-		</div>
+        <div data-include="menu.html"></div>
 
-	</div>
+        <div class="row">
+            <div class="home col-md-offset-1">
+                <div class="header col-md-12">
+                    <h1>Your Shiny Robot</h1>
+                </div>
+                <div class="robot col-md-5">
+                    <img src="images/yellow_robot.jpg" alt="Robot">
+                </div>
+                <div class="robot_buttons col-md-4">
+                    <button type="button" class="btn btn-default btn-lg btn-block">CUSTOMIZE ROBOT</button>
+                    <button type="button" class="btn btn-default btn-lg btn-block">STATS</button>
+                    <button type="button" class="btn btn-default btn-lg btn-block">STRATEGY</button>
+                </div>
+            </div>
+        </div>
 
-	</body>
+    </div>
+
+</body>
 </html>
