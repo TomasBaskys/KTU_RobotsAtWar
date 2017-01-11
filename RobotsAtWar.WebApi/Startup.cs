@@ -20,6 +20,8 @@ namespace RobotsAtWar.WebApi
             configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(
                 new StringEnumConverter());
 
+            new Swagger().Configure(configuration);
+
             RegisterRoutes(configuration);
 
             _server = new HttpSelfHostServer(configuration);
