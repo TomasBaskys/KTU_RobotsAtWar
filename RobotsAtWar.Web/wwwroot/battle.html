@@ -26,10 +26,13 @@
 
         <div class="row">
             <div class="menu col-md-12">
-                <div class="btn-group" role="group" aria-label="Menu buttons">
-                    <a class="btn btn-secondary" href="index.html" role="button">Home</a>
-                    <a class="btn btn-secondary" href="battle-arenas.html" role="button">Battles</a>
-                    <a class="btn btn-secondary" href="strategy-builder.html" role="button">Strategy</a>
+                <div class="btn-group col-md-10" role="group" aria-label="Menu buttons">
+                    <a id="home_btn" class="btn btn-secondary" href="index.html" role="button">Home</a>
+                    <a id="battles_btn" class="btn btn-secondary" href="battle-arenas.html" role="button">Battles</a>
+                    <a id="strategy_btn" class="btn btn-secondary" href="strategy-builder.html" role="button">Strategy</a>
+                </div>
+                <div class="btn-group col-md-2" role="group" aria-label="Menu buttons">
+                    <a href="javascript:void(0)" id="fbLogout" onclick="fbLogout()" class="btn btn-secondary" role="button">Logout</a>
                 </div>
             </div>
         </div>

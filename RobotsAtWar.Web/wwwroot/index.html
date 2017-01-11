@@ -11,7 +11,7 @@
 
     <script src="./js/authentication.js"></script>
 </head>
-<body onload="setRobotId()">
+<body>
 
     <div id="fb-root"></div>
 
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="menu col-md-12">
                 <div class="btn-group col-md-10" role="group" aria-label="Menu buttons">
-                    <a id="home_btn" class="btn btn-default" href="#" role="button">Home</a>
+                    <a id="home_btn" class="btn btn-default" href="index.html" role="button">Home</a>
                     <a id="battles_btn" class="btn btn-secondary" href="battle-arenas.html" role="button">Battles</a>
                     <a id="strategy_btn" class="btn btn-secondary" href="strategy-builder.html" role="button">Strategy</a>
                     <script>
@@ -38,8 +38,8 @@
                     </script>
                 </div>
                 <div class="btn-group col-md-2" role="group" aria-label="Menu buttons">
-                    <a id="fbLogout" onclick="fbLogout()" class="btn btn-secondary" role="button">Logout</a>
-                    <a id="fbLogin" onclick="login()" class="btn btn-secondary" role="button">Login</a>
+                    <a href="javascript:void(0)" id="fbLogout" onclick="fbLogout()" class="btn btn-secondary" role="button">Logout</a>
+                    <a href="javascript:void(0)" id="fbLogin" onclick="login()" class="btn btn-secondary" role="button">Login</a>
                     <script>
                     var robotId = sessionStorage.getItem("robotId");
                     if (robotId === null) {

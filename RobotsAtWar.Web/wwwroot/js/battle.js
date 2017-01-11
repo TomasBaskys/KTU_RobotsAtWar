@@ -68,14 +68,14 @@ function defence(strength) {
     fillActionBar(strength);
     clearActionBar(strength);
 
-    setDefenceText("start");
+    setDefenceText(robotActionInpactTextElement, "start");
 
     $.get('http://PCTOMBASL1:1235/api/actions/defence?' +
         'battleFieldId=' + battleFieldId +
         '&robotId=' + robotId +
         '&defenceStrength=' + strength,
         function () {
-            setDefenceText("finish");
+            setDefenceText(robotActionInpactTextElement, "finish");
         });
 }
 

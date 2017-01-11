@@ -13,6 +13,16 @@ namespace RobotsAtWar.Server.Readers
             using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["RobotsAtWarDB"].ConnectionString))
             {
                 var query = $@"
+IF NOT EXISTS (SELECT 1 FROM dbo.Robots WHERE ID_Robot = '{robotId}')
+BEGIN
+    INSERT INTO [dbo].[Robots]
+               ([ID_Robot]
+               ,[RobotName])
+         VALUES
+               ('{robotId}',
+               'fbUser')
+END
+
 SELECT 
     R.ID_Robot AS RobotId,
     R.RobotName,

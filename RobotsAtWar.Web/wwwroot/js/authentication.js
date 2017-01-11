@@ -17,19 +17,6 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function setRobotId() {
-    if (sessionStorage.getItem("robotId") === null) {
-        setTimeout(function () {
-            FB.getLoginStatus(function (response) {
-                if (response.status === "connected" && sessionStorage.getItem("robotId") === null) {
-                    sessionStorage.setItem("robotId", response.authResponse.userID);
-                    location.reload();
-                }
-            });
-        }, 500);
-    }
-}
-
 function redirectOnUnauthenticated() {
     if (!isAuthenticated()) {
         window.location.replace("./index.html");
@@ -43,6 +30,10 @@ function isAuthenticated() {
 function login() {
     FB.login(function (response) {
         sessionStorage.setItem("robotId", response.authResponse.userID);
+
+        $.get('http://PCTOMBASL1:1235/api/auth/login?' +
+                        'robotId=' + response.authResponse.userID);
+
         window.location.reload();
     });
 }
