@@ -24,8 +24,7 @@ FROM
 JOIN
     [dbo].[Robots] R ON R.[ID_Robot] = AB.[ID_HostRobot]
 WHERE
-    AB.[BattleType] = 'Public'
-    AND AB.[ID_BattleState] = 1"; //Pending
+    AB.[ID_BattleState] = 1"; //Pending
 
                 return db.Query<BattleField>(query);
             }

@@ -66,12 +66,10 @@
 
                 <div class="host_button col-md-2">
                     <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#create_battle_modal">Host Battle</button>
-                </div>
-
-                <div class="join_n_refresh_buttons col-md-12">
-                    <button type="button" class="btn btn-default btn-block" onclick="joinModal()" data-toggle="modal" data-target="#join_battle_modal">Join Battle</button>
-                    <button type="button" class="btn btn-default" onclick="RefreshBattlesTable()">Refresh</button>
-                    <a id="demoBattleButton" class="btn btn-default" role="button">DEMO</a>
+                    <button type="button" class="btn btn-default btn-block" onclick="joinModal()" data-toggle="modal" data-target="#join_battle_modal">Join Selected Battle</button>
+                    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#join_private_battle_modal">Join Private Battle</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="RefreshBattlesTable()">Refresh</button>
+                    <a id="demoBattleButton" class="btn btn-default btn-block" role="button">DEMO</a>
                 </div>
             </div>
 
@@ -143,7 +141,36 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary active" id="join_button" onclick="joinBattle()">Join Battle</button>
+                    <button type="button" class="btn btn-primary active" id="join_button" onclick="joinBattle('#join_battle_modal')">Join Battle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="join_private_battle_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Join Battle</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-control-label">Battle ID: </label>
+                            <input id="battle-id" style="width: 75%"class="form-control-label"/>
+                        </div>
+                        <div class="radio">
+                            <label><input id="manual_radio" type="radio" name="optradio" checked="checked">Manual Battle</label>
+                        </div>
+                        <div class="radio">
+                            <label><input id="auto_radio" type="radio" name="optradio">Auto Battle</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary active" id="join_private_button" onclick="joinBattle('#join_private_battle_modal')">Join Battle</button>
                 </div>
             </div>
         </div>

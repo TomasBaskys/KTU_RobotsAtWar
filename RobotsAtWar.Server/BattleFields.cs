@@ -53,7 +53,9 @@ namespace RobotsAtWar.Server
         public static IEnumerable<BattleField> GetBattleFields()
         {
             var battleReader = new BattleReader();
-            return battleReader.GetActiveBattles();
+            var activeBattles = battleReader.GetActiveBattles();
+
+            return activeBattles.Where(p => p.BattleType == RoomType.Public);
         }
 
         public static BattleField GetBattleField(string battleFieldId)
@@ -105,8 +107,8 @@ namespace RobotsAtWar.Server
 
             return new RobotsLifePoints
             {
-                Robot = robot.Status.Life,
-                Enemy = robot.Enemy.Status.Life
+                Robot = robot.Status.Life > 0 ? robot.Status.Life : 0,
+                Enemy = robot.Enemy.Status.Life > 0 ? robot.Enemy.Status.Life : 0
             };
         }
     }

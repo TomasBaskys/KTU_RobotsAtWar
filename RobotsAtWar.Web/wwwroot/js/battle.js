@@ -117,9 +117,12 @@ function setActionImpactText(element, impact, color) {
     element.innerHTML = impact;
     element.style.color = color;
 
-    setTimeout(function () {
-        element.innerHTML = "";
-    }, 500);
+    if (Number(impact) == impact) {
+        setTimeout(function() {
+                element.innerHTML = "";
+            },
+            500);
+    }
 }
 
 function setDefenceText(element, defenceState) {
@@ -156,7 +159,7 @@ function robotStatusPolling()
     var battleFieldId = sessionStorage.getItem("battleFieldId");
     var robotId = sessionStorage.getItem("robotId");
 
-    setInterval(function () {
+    var statusPollingInterval = setInterval(function () {
         $.get('http://PCTOMBASL1:1235/api/battlefield/robotstatus?' +
             'battleFieldId=' + battleFieldId +
             '&robotId=' + robotId,
@@ -180,10 +183,12 @@ function robotStatusPolling()
 
                 if (response.Robot <= 0) {
                     setActionImpactText(battleHeaderElement, "You Lose!", "red");
+                    clearInterval(statusPollingInterval);
                 }
 
                 if (response.Enemy <= 0) {
                     setActionImpactText(battleHeaderElement, "You Win!", "green");
+                    clearInterval(statusPollingInterval);
                 }
 
                 controlHealthBar(response.Robot, robotHealthBarElement);

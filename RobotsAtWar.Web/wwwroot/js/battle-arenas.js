@@ -166,10 +166,10 @@ function fillJoinModal(battleName, battleId, robotId, opponentId) {
     }
 }
 
-function joinBattle() {
+function joinBattle(modal) {
     var robotId = sessionStorage.getItem('robotId');
-    var battleId = $('#join_battle_modal #battle-id')[0].innerHTML;
-    var battleType = $('#join_battle_modal #manual_radio')[0].checked
+    var battleId = $(modal +' #battle-id')[0].innerHTML || $(modal +' #battle-id')[0].value;
+    var battleType = $(modal +' #manual_radio')[0].checked
         ? "manual"
         : "auto";
 
