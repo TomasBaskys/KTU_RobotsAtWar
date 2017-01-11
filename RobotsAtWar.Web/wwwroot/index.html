@@ -7,31 +7,71 @@
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 
-    <script src="./js/csi.min.js"></script>
-    <script src="./js/authentication.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 
+    <script src="./js/authentication.js"></script>
 </head>
-<body onload="statusCheck();">
+<body onload="setRobotId()">
+
+    <div id="fb-root"></div>
 
     <div class="container">
 
-        <div data-include="header.html"></div>
+        <div class="row">
+            <div class="logo col-md-12">
+                <p>Robots At War</p>
+            </div>
+        </div>
 
-        <div data-include="menu.html"></div>
+        <div class="row">
+            <div class="menu col-md-12">
+                <div class="btn-group col-md-10" role="group" aria-label="Menu buttons">
+                    <a id="home_btn" class="btn btn-default" href="#" role="button">Home</a>
+                    <a id="battles_btn" class="btn btn-secondary" href="battle-arenas.html" role="button">Battles</a>
+                    <a id="strategy_btn" class="btn btn-secondary" href="strategy-builder.html" role="button">Strategy</a>
+                    <script>
+                        var robotId = sessionStorage.getItem("robotId");
+                        if (robotId === null) {
+                            document.getElementById("battles_btn").remove();
+                            document.getElementById("strategy_btn").remove();
+                        }
+                    </script>
+                </div>
+                <div class="btn-group col-md-2" role="group" aria-label="Menu buttons">
+                    <a id="fbLogout" onclick="fbLogout()" class="btn btn-secondary" role="button">Logout</a>
+                    <a id="fbLogin" onclick="login()" class="btn btn-secondary" role="button">Login</a>
+                    <script>
+                    var robotId = sessionStorage.getItem("robotId");
+                    if (robotId === null) {
+                        document.getElementById("fbLogout").remove();
+                    } else {
+                        document.getElementById("fbLogin").remove();
+                    }
+                    </script>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="home col-md-offset-1">
                 <div class="header col-md-12">
-                    <h1>Your Shiny Robot</h1>
+                    <h1 style="color: red">Log In to get this shiny robot!</h1>
+                    <script>
+                        var robotId = sessionStorage.getItem("robotId");
+                        if (robotId !== null) {
+                            document.getElementsByClassName("header")[0].innerHTML = "<h1>Your Shiny Robot !!! </h1>";
+                        }
+                    </script>
                 </div>
                 <div class="robot col-md-5">
                     <img src="images/yellow_robot.jpg" alt="Robot">
                 </div>
-                <div class="robot_buttons col-md-4">
+                <!--<div class="robot_buttons col-md-4">
                     <button type="button" class="btn btn-default btn-lg btn-block">CUSTOMIZE ROBOT</button>
                     <button type="button" class="btn btn-default btn-lg btn-block">STATS</button>
                     <button type="button" class="btn btn-default btn-lg btn-block">STRATEGY</button>
-                </div>
+                </div>-->
             </div>
         </div>
 

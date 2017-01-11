@@ -8,16 +8,14 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
     
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="./js/csi.min.js"></script>
 
     <script src="js/strategy.js"></script>
     <script src="js/authentication.js"></script>
+    <script>redirectOnUnauthenticated()</script>
 </head>
 <body onload="onPageLoad();">
 
     <div id="fb-root"></div>
-    <script>initializeFbSdk(document, 'script', 'facebook-jssdk')</script>
-    <script>redirectUnauthenticated()</script>
 
     <div class="container">
 

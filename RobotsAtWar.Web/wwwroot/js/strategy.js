@@ -73,5 +73,7 @@ function removeLastItem() {
     var table = document.getElementsByClassName("strategy_table")[0];
     var rowCount = table.rows.length;
 
-    table.deleteRow(rowCount - 1);
+    if (rowCount > 1) {
+        table.deleteRow(rowCount - 1);
+    }
 }

@@ -8,17 +8,15 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-    <script src="./js/csi.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>
     <script src="js/battle-arenas.js"></script>
     <script src="js/authentication.js"></script>
+    <script>redirectOnUnauthenticated()</script>
 </head>
 <body onload="onPageLoad();">
 
     <div id="fb-root"></div>
-    <script>initializeFbSdk(document, 'script', 'facebook-jssdk')</script>
-    <script>redirectUnauthenticated()</script>
 
     <div class="container">
 
