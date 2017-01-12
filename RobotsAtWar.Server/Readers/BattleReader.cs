@@ -18,7 +18,8 @@ SELECT
     AB.[ID_Battle] AS BattleId,
     AB.[ID_HostRobot] AS HostRobotId,
     AB.[BattleName] AS BattleName,
-    R.[RobotName] AS HostRobotName
+    R.[RobotName] AS HostRobotName,
+    AB.[BattleType] AS BattleType
 FROM 
     [dbo].[ActiveBattles] AB
 JOIN
