@@ -25,11 +25,6 @@ namespace RobotsAtWar.Server
 
         public readonly RoomType BattleType;
 
-        public BattleField()
-        {
-            Robots = new List<Robot>(BattleFieldCapacity);
-        }
-
         public BattleField(string hostRobotId, string battleName, RoomType battleType, string battleId = null)
         {
             HostRobotId = hostRobotId;
@@ -65,32 +60,10 @@ namespace RobotsAtWar.Server
             return Robots.FirstOrDefault(r => r.RobotId == robotId);
         }
 
-        public bool AreRobotsReady()
-        {
-            return Robots.All(r => r.Ready);
-        }
-
-        public bool IsBattleOver()
-        {
-            return !(Robots[0].Status.Life > 0 && Robots[1].Status.Life > 0);
-        }
-
-        public string GetWinner(string myGuid)
-        {
-            Robot aliveRobot = GetAliveRobot();
-
-            return aliveRobot.RobotId;
-        }
-
         private void SetRobotsEnemies()
         {
             Robots[0].Enemy = Robots[1];
             Robots[1].Enemy = Robots[0];
-        }
-
-        private Robot GetAliveRobot()
-        {
-            return Robots.FirstOrDefault(r => r.Status.Life > 0);
         }
 
         public async void StartBattle()

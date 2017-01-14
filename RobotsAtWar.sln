@@ -16,6 +16,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsAtWar.WebApi", "Robot
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RobotsAtWar.Web", "RobotsAtWar.Web\RobotsAtWar.Web.xproj", "{D604FC7D-1E75-44A9-83C7-E612B79AFE0F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{57993461-C0F4-4369-B859-27708BCA0FCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B96970F3-BD94-4392-9E94-275CF8347D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsAtWar.Server.Tests", "tests\RobotsAtWar.Server.Tests\RobotsAtWar.Server.Tests.csproj", "{70E1A25C-24E3-4890-A925-7D3B17E03F0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,8 +40,18 @@ Global
 		{D604FC7D-1E75-44A9-83C7-E612B79AFE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D604FC7D-1E75-44A9-83C7-E612B79AFE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D604FC7D-1E75-44A9-83C7-E612B79AFE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E1A25C-24E3-4890-A925-7D3B17E03F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E1A25C-24E3-4890-A925-7D3B17E03F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E1A25C-24E3-4890-A925-7D3B17E03F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E1A25C-24E3-4890-A925-7D3B17E03F0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B680B75B-0AF2-415D-B037-74A857A9D95E} = {B96970F3-BD94-4392-9E94-275CF8347D22}
+		{6E7540B5-3BF7-45D0-91C4-8686CCE23944} = {B96970F3-BD94-4392-9E94-275CF8347D22}
+		{D604FC7D-1E75-44A9-83C7-E612B79AFE0F} = {B96970F3-BD94-4392-9E94-275CF8347D22}
+		{70E1A25C-24E3-4890-A925-7D3B17E03F0A} = {57993461-C0F4-4369-B859-27708BCA0FCD}
 	EndGlobalSection
 EndGlobal

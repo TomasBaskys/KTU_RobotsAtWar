@@ -8,6 +8,11 @@ namespace RobotsAtWar.Server
 {
     public class Robot
     {
+        public Robot()
+        {
+            Status = new RobotStatus();
+        }
+
         public Robot(dynamic row)
         {
             RobotId = row.RobotId;
