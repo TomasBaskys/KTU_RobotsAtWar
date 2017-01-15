@@ -7,10 +7,8 @@ using RobotsAtWar.Server.Writers;
 
 namespace RobotsAtWar.Server
 {
-    public static class BattleFields
+    public class BattleFields
     {
-        private static readonly List<BattleField> Rooms = new List<BattleField>();
-
         public static void LoadBattleField()
         {
             var battles = GetBattleFields();
@@ -23,14 +21,14 @@ namespace RobotsAtWar.Server
                     battleField.BattleType,
                     battleField.BattleId);
 
-                Rooms.Add(battle);
+                BattleFieldSingleton.Instance.BattleFields.Add(battle);
             }
         }
 
         public static string CreateBattleField(string hostId, string battleFieldName, RoomType roomType)
         {
             var battle = new BattleField(hostId, battleFieldName, roomType);
-            Rooms.Add(battle);
+            BattleFieldSingleton.Instance.BattleFields.Add(battle);
 
             var battleWriter = new BattleWriter();
             battleWriter.AddBattle(battle);
@@ -60,7 +58,7 @@ namespace RobotsAtWar.Server
 
         public static BattleField GetBattleField(string battleFieldId)
         {
-            BattleField battleField = Rooms.FirstOrDefault(r => r.BattleId == battleFieldId);
+            BattleField battleField = BattleFieldSingleton.Instance.BattleFields.FirstOrDefault(r => r.BattleId == battleFieldId);
             
             if (battleField == null)
             {
@@ -117,5 +115,30 @@ namespace RobotsAtWar.Server
     {
         public int Robot { get; set; }
         public int Enemy { get; set; }
+    }
+
+    public class BattleFieldSingleton
+    {
+        public readonly List<BattleField> BattleFields;
+
+        private static BattleFieldSingleton _instance;
+
+        private BattleFieldSingleton()
+        {
+            BattleFields = new List<BattleField>();
+        }
+
+        public static BattleFieldSingleton Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new BattleFieldSingleton();
+                }
+
+                return _instance;
+            }
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace RobotsAtWar.WebApi.Controllers
 {
     public class ActionsController : ApiController
     {
+        private IReceiver _robotAction;
+
         [HttpGet]
         public int Attack(string battleFieldId, string robotId, ActionStrength attackStrength)
         {
@@ -18,7 +20,8 @@ namespace RobotsAtWar.WebApi.Controllers
             {
                 Robot robot = battleField.GetRobot(robotId);
 
-                damage = RobotActions.Attack(robot, attackStrength);
+                _robotAction = new RobotActions(robot, attackStrength);
+                damage = new AttackAction(_robotAction).Execute();
             }
             else
             {
@@ -37,7 +40,8 @@ namespace RobotsAtWar.WebApi.Controllers
             {
                 Robot robot = battleField.GetRobot(robotId);
 
-                RobotActions.Defence(robot, defenceStrength);
+                _robotAction = new RobotActions(robot, defenceStrength);
+                new DefenceAction(_robotAction).Execute();
             }
         }
 
@@ -52,7 +56,8 @@ namespace RobotsAtWar.WebApi.Controllers
             {
                 Robot robot = battleField.GetRobot(robotId);
 
-                healPoints = RobotActions.Rest(robot, restStrength);
+                _robotAction = new RobotActions(robot, restStrength);
+                healPoints = new RestAction(_robotAction).Execute();
             }
 
             return healPoints;

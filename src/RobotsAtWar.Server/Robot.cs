@@ -8,25 +8,22 @@ namespace RobotsAtWar.Server
 {
     public class Robot
     {
-        public Robot()
-        {
-            Status = new RobotStatus();
-        }
-
         public Robot(dynamic row)
         {
             RobotId = row.RobotId;
             RobotName = row.RobotName;
 
+            IStrategy strategy = row.Strategy != null
+                ? (IStrategy) new RealStrategy(row.Strategy.ToString())
+                : new NullStrategy();
+
             try
             {
-                RobotStrategy = row.Strategy != null
-                    ? JsonConvert.DeserializeObject<RobotStrategy>(row.Strategy.ToString())
-                    : new RobotStrategy {Strategy = new List<RobotTurn>()};
+                RobotStrategy = strategy.DeserializeStrategy();
             }
             catch (ArgumentNullException)
             {
-                throw new ArgumentNullException($"Strategy must be defined before using 'Auto' battle mode.");
+                throw new ArgumentNullException($"RobotStrategy must be defined before using 'Auto' battle mode.");
             }
         }
 
@@ -49,6 +46,34 @@ namespace RobotsAtWar.Server
     {
         Manual,
         Auto
+    }
+
+    public interface IStrategy
+    {
+        RobotStrategy DeserializeStrategy();
+    }
+
+    public class RealStrategy : IStrategy
+    {
+        private readonly string _strategy;
+
+        public RealStrategy(string strategy)
+        {
+            _strategy = strategy;
+        }
+
+        public RobotStrategy DeserializeStrategy()
+        {
+            return JsonConvert.DeserializeObject<RobotStrategy>(_strategy);
+        }
+    }
+
+    public class NullStrategy : IStrategy
+    {
+        public RobotStrategy DeserializeStrategy()
+        {
+            return new RobotStrategy { Strategy = new List<RobotTurn>() };
+        }
     }
 
     public class RobotStrategy

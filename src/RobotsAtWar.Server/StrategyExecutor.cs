@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace RobotsAtWar.Server
 {
@@ -18,20 +17,25 @@ namespace RobotsAtWar.Server
             {
                 var robotTurn = strategy[index % strategy.Count];
 
+                IReceiver robotAction = new RobotActions(robot, robotTurn.Level);
+                ActionCommand command;
+
                 switch (robotTurn.Action.ToString())
                 {
                     case "Attack":
-                        RobotActions.Attack(robot, robotTurn.Level);
+                        command = new AttackAction(robotAction);
                         break;
                     case "Defence":
-                        RobotActions.Defence(robot, robotTurn.Level);
+                        command = new DefenceAction(robotAction);
                         break;
                     case "Rest":
-                        RobotActions.Rest(robot, robotTurn.Level);
+                        command = new RestAction(robotAction);
                         break;
                     default:
                         throw new InvalidOperationException($"Action '{robotTurn.Action}' is invalid. Possible actions: 'Attack', 'Defence', 'Rest'.'");
                 }
+
+                command.Execute();
 
                 Thread.Sleep(500);
 

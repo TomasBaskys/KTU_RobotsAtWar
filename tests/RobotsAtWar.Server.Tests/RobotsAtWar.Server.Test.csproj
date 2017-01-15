@@ -51,7 +51,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RobotsAtWar.Server\RobotsAtWar.Server.csproj">
+    <ProjectReference Include="..\..\src\RobotsAtWar.Server\RobotsAtWar.Server.csproj">
       <Project>{B680B75B-0AF2-415D-B037-74A857A9D95E}</Project>
       <Name>RobotsAtWar.Server</Name>
     </ProjectReference>

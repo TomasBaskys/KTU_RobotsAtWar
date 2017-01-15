@@ -11,7 +11,7 @@ namespace RobotsAtWar.Server
     {
         private readonly int BattleFieldCapacity = 2;
 
-        public readonly string HostRobotId;
+        public string HostRobotId { get; set; }
 
         public string HostRobotName { get; set; }
 
@@ -19,11 +19,11 @@ namespace RobotsAtWar.Server
 
         public BattleState BattleState { get; set; }
 
-        public readonly string BattleId;
+        public string BattleId { get; set; }
 
-        public readonly string BattleName;
+        public string BattleName { get; set; }
 
-        public readonly RoomType BattleType;
+        public RoomType BattleType { get; set; }
 
         public BattleField(string hostRobotId, string battleName, RoomType battleType, string battleId = null)
         {
@@ -34,6 +34,18 @@ namespace RobotsAtWar.Server
             BattleName = battleName;
             BattleType = battleType;
             BattleState = BattleState.Pending;
+        }
+
+        public BattleField(string battleId, string hostRobotId, string battleName, string hostRobotName, string battleType)
+        {
+            this.BattleId = battleId;
+            this.HostRobotId = hostRobotId;
+            this.BattleName = battleName;
+            this.HostRobotName = hostRobotName;
+
+            RoomType battleTypeEnum;
+            Enum.TryParse(battleType, out battleTypeEnum);
+            this.BattleType = battleTypeEnum;
         }
 
         public void RegisterRobot(string robotId, PlayType playType)
@@ -96,3 +108,4 @@ namespace RobotsAtWar.Server
         Canceled = 4
     }
 }
+

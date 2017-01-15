@@ -2,21 +2,10 @@
 
 namespace RobotsAtWar.Server.Weapons
 {
-    public class DoubleSidedAxe : IWeapon
+    public class DoubleSidedAxe : Weapon
     {
-        public int CalculateAttackDamage(ActionStrength actionStrength)
-        {
-            switch (actionStrength)
-            {
-                case ActionStrength.Weak:
-                    return 1;
-                case ActionStrength.Medium:
-                    return 2;
-                case ActionStrength.Strong:
-                    return 3;
-                default:
-                    return 0;
-            }
-        }
+        private static int _multiplier = 3;
+
+        public DoubleSidedAxe() : base(_multiplier) { }
     }
 }
