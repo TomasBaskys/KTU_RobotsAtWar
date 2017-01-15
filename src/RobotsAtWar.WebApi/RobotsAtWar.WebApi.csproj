@@ -124,6 +124,8 @@
     <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\BattleFieldController.cs" />
     <Compile Include="CustomHeaderHandler.cs" />
+    <Compile Include="DI\RobotReaderModule.cs" />
+    <Compile Include="DI\ServiceContainer.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

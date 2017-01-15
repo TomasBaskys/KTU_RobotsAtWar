@@ -159,7 +159,7 @@ namespace RobotsAtWar.Server
 
         public ActionCommand(IReceiver receiver)
         {
-            receiver = Receiver;
+            Receiver = receiver;
         }
 
         public abstract int Execute();
