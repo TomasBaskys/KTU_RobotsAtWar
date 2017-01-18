@@ -16,6 +16,8 @@ namespace RobotsAtWar.Server
 
         public RobotActions(Robot robot, ActionStrength actionStrength)
         {
+            if (robot == null) throw new ArgumentNullException(nameof(robot));
+
             _robot = robot;
             _actionStrength = actionStrength;
 

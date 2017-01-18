@@ -8,13 +8,21 @@ namespace RobotsAtWar.Server
 {
     public class Robot
     {
+        public Robot(string robotId, string robotName, string strategy)
+        {
+            RobotId = robotId;
+            RobotName = robotName;
+
+            RobotStrategy = new RealStrategy(strategy).DeserializeStrategy();
+        }
+
         public Robot(dynamic row)
         {
             RobotId = row.RobotId;
             RobotName = row.RobotName;
 
             IStrategy strategy = row.Strategy != null
-                ? (IStrategy) new RealStrategy(row.Strategy.ToString())
+                ? (IStrategy)new RealStrategy(row.Strategy.ToString())
                 : new NullStrategy();
 
             try
